@@ -223,3 +223,20 @@ function init(group) {
 
 
 }
+
+
+
+
+function josipFunkcijaHEHEHE() {
+
+
+    
+}
+
+
+
+
+
+
+
+
