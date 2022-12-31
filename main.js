@@ -71,6 +71,8 @@ animate();
 
 // #endregion
 
+// #region neke funkcije
+
 function addLine(group, color, points) {
     const material = new THREE.LineBasicMaterial({color: color});
     const geometry = new THREE.BufferGeometry().setFromPoints(points);
@@ -224,3 +226,16 @@ function init(group) {
 
 }
 
+// #endregion
+
+// #region KARLO
+
+// #endregion
+
+// #region ANTONIO
+
+// #endregion
+
+// #region JOSIP
+
+// #endregion
