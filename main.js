@@ -214,7 +214,7 @@ function init(group) {
    //group.add(new THREE.PointLight(0xFFFFFF, 0.5));
 
     let geometry = new THREE.BoxGeometry( 1, 1, 1, 100, 100, 100 );
-    let material = new THREE.MeshPhongMaterial( { color: 0x00ff00} );
+    let material = new THREE.MeshPhongMaterial( { color: 0x0000ff} );
     let cube = new THREE.Mesh( geometry, material );
     cube.position.set(0.5, 0.5, 0.5);
     group.add(cube);
