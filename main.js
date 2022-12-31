@@ -221,5 +221,4 @@ function init(group) {
 
     //buildPlane(group);
 
-
 }
