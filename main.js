@@ -81,19 +81,27 @@ class Cylinder {
     }
 
     update(dt) {
-        
+        controls.target.set(this.object.position.x, this.object.position.y, this.object.position.z);
+        if(this.args.rotate) {
+            this.object.rotation.y += this.args.rotationSpeed * dt;
+            this.object.rotation.z += this.args.rotationSpeed * dt;
+        }
     }
 
     onShowWireframe() {
-        
+        this.material.wireframe = true;
+        this.ambientLight.intensity = 1;
     }
 
     onShowNormal() {
-        
+        this.material.wireframe = false;
+        this.ambientLight.intensity = 0.08;
     }
 
     onShowTexture() {
-        
+        this.material.wireframe = false;
+        this.ambientLight.intensity = 0.08;
+       
     }
 
     cleanUp() {
