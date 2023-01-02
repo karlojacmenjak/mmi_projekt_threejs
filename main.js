@@ -124,7 +124,7 @@ class Cone {
     init() {
 
         this.group = new THREE.Group();
-        this.geometry = new THREE.ConeGeometry(1,10,10);
+        this.geometry = new THREE.ConeGeometry(1,5,5);
         this.material = new THREE.MeshLambertMaterial({
             color: 0xFF00FF,
         });
@@ -158,6 +158,7 @@ class Cone {
     update(dt) {
         controls.target.set(this.object.position.x, this.object.position.y, this.object.position.z);
         if(this.args.rotate) {
+            this.object.rotation.x += this.args.rotationSpeed * dt;
             this.object.rotation.y += this.args.rotationSpeed * dt;
         }
     }
