@@ -51,14 +51,20 @@ class Cylinder {
     constructor() {
         
     }
+    build(displayMode) {
 
-    init() {
+        console.log(displayMode);
 
         this.group = new THREE.Group();
+
         this.geometry = new THREE.CylinderGeometry(1, 1, 1, 8);
+
         this.material = new THREE.MeshLambertMaterial({
-            color: 0xFF00FF,
+            color: 0xff00ff,
+            wireframe: displayMode == DisplayMode.wireframe,
+            map: displayMode == DisplayMode.texture ? this.texture : null,
         });
+    
 
         this.object = new THREE.Mesh(this.geometry, this.material);
 
@@ -416,7 +422,7 @@ function addAxes(group, len = 4) {
 
 function init() {
 
-    scenes.push(new Sphere());
+    scenes.push(new Cylinder());
     scenes.push(new Sphere());
     scenes.push(new Sphere());
     scenes.push(new Sphere());
