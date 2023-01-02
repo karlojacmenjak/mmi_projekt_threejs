@@ -49,10 +49,34 @@ class Cylinder {
     init() {
 
         this.group = new THREE.Group();
+        this.geometry = new THREE.CylinderGeometry(1, 10, 10);
+        this.material = new THREE.MeshLambertMaterial({
+            color: 0xFF00FF,
+        });
 
-        // ....
+        this.object = new THREE.Mesh(this.geometry, this.material);
+        
+        this.light = new THREE.DirectionalLight(0xffffff, 1.2);
+        this.light.position.set(5, 0, 5);
+
+        this.ambientLight = new THREE.AmbientLight(0xFFFFFF);
+
+        this.group.add(this.light);
+        this.group.add(this.object);
+        this.group.add(this.ambientLight);
+        scene.add(this.group);
+        
+        this.args = {
+            rotate: false,
+            rotationSpeed: 1,
+        };
 
         this.guiElements = [];
+        this.guiElements.push(gui.add(this.object.position, 'x', -5, 5, 0.1));
+        this.guiElements.push(gui.add(this.object.position, 'y', -5, 5, 0.1));
+        this.guiElements.push(gui.add(this.object.position, 'z', -5, 5, 0.1));
+        this.guiElements.push(gui.add(this.args, 'rotate').name('rotiraj'));
+        this.guiElements.push(gui.add(this.args, 'rotationSpeed').name('brzina'));
         
     }
 
@@ -93,7 +117,7 @@ class Cone {
     init() {
 
         this.group = new THREE.Group();
-
+        
         // ....
 
         this.guiElements = [];
@@ -130,7 +154,7 @@ class Cone {
 class Sphere {
 
     constructor() {
-        // NEKA PROMJENA
+        
     }
 
     init() {
