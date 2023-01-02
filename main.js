@@ -130,7 +130,7 @@ class Cone {
 class Sphere {
 
     constructor() {
-        
+        // NEKA PROMJENA
     }
 
     init() {
