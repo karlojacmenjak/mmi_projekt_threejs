@@ -9,35 +9,54 @@ canvas {
   height: 100%;
 }
 
-.ui {
-
+.ui1 {
   position: absolute;
   bottom: 20px;
   left: 20px;
   user-select: none;
   z-index: 1;
+}
 
+.ui2 {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  user-select: none;
+  z-index: 1;
+}
 
+.ui2 button {
+  display: block;
+  margin-top: 16px;
 }
 
 button {
 
+  position: relative;
+
   margin: 0;
   outline: 0;
+  padding: 0;
   text-decoration: 0;
   border: none;
   cursor: pointer;
 
-  width: 64px;
-  height: 64px;
-  border-radius: 32px;
-  padding: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 25%;
   
-  background-color: #323232;
+  background-color: transparent;
   transition-duration: 0.2s;
 
 }
 
+button img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 button:hover, .selected {
-  background-color: #2E7D32;
+  background-color: #4527A0;
 }

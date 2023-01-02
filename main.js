@@ -6,8 +6,6 @@ import { OrbitControls } from './libs/OrbitControls.js';
 import { GUI } from './libs/lil-gui.module.min.js';
 import { CSS2DRenderer, CSS2DObject } from './libs/CSS2DRenderer.js';
 
-THREE.Object3D.DefaultUp = new THREE.Vector3(0, 0, 1);
-
 const scene = new THREE.Scene();
 
 const camera = new THREE.PerspectiveCamera(
@@ -35,43 +33,196 @@ window.addEventListener('resize', () => {
 }, false);
 
 const controls = new OrbitControls(camera, labelRenderer.domElement);
-
-const testGroup = new THREE.Group();
-scene.add(testGroup);
-
-camera.position.set(6, 6, 6);
-camera.lookAt(0, 0, 0);
-
-const axesGroup = new THREE.Group();
-addAxes(axesGroup);
-testGroup.add(axesGroup);
-
 const gui = new GUI({title: 'Postavke'});
-gui.add(axesGroup, 'visible').name('Prikaži osi');
-
-init(testGroup);
-
-function animate() {
-    requestAnimationFrame(animate);
-
-    //cube.rotation.x += 0.01;
-    //cube.rotation.y += 0.01;
-
-    renderer.render(scene, camera);
-    labelRenderer.render(scene, camera);
-};
-
-animate();
-
-
-
-
-
-
+const clock = new THREE.Clock();
 
 // #endregion
 
-// #region neke funkcije
+// #region KARLO
+
+// #endregion
+
+// #region ANTONIO
+
+// #endregion
+
+// #region JOSIP
+
+class Sphere {
+
+    constructor() {
+        
+    }
+
+    init() {
+
+        this.group = new THREE.Group();
+
+        this.geometry = new THREE.SphereGeometry(1, 10, 10);
+
+        this.material = new THREE.MeshLambertMaterial({
+            color: 0xFF00FF,
+        });
+
+        this.object = new THREE.Mesh(this.geometry, this.material);
+
+        this.light = new THREE.DirectionalLight(0xffffff, 1.2);
+        this.light.position.set(5, 0, 5);
+
+        this.ambientLight = new THREE.AmbientLight(0xFFFFFF);
+
+        this.group.add(this.light);
+        this.group.add(this.object);
+        this.group.add(this.ambientLight);
+        scene.add(this.group);
+        
+        this.args = {
+            rotate: false,
+            rotationSpeed: 1,
+        };
+
+        this.guiElements = [];
+        this.guiElements.push(gui.add(this.object.position, 'x', -5, 5, 0.1));
+        this.guiElements.push(gui.add(this.object.position, 'y', -5, 5, 0.1));
+        this.guiElements.push(gui.add(this.object.position, 'z', -5, 5, 0.1));
+        this.guiElements.push(gui.add(this.args, 'rotate').name('rotiraj'));
+        this.guiElements.push(gui.add(this.args, 'rotationSpeed').name('brzina'));
+        
+    }
+
+    update(dt) {
+        controls.target.set(this.object.position.x, this.object.position.y, this.object.position.z);
+        if(this.args.rotate) {
+            this.object.rotation.y += this.args.rotationSpeed * dt;
+            this.object.rotation.z += this.args.rotationSpeed * dt;
+        }
+    }
+
+    onShowWireframe() {
+        this.material.wireframe = true;
+        this.ambientLight.intensity = 1;
+    }
+
+    onShowNormal() {
+        this.material.wireframe = false;
+        this.ambientLight.intensity = 0.08;
+    }
+
+    onShowTexture() {
+        this.material.wireframe = false;
+        this.ambientLight.intensity = 0.08;
+       
+    }
+
+    cleanUp() {
+        scene.remove(this.group);
+        for(let i = 0; i < this.guiElements.length; i++) this.guiElements[i].destroy();
+    }
+
+}
+
+// #endregion
+
+// #region init
+
+let scenes = [];
+let currentScene = 0;
+let displayMode = 0;
+let showAxes = true;
+
+class UiController {
+
+    constructor() {
+        
+        this.sceneButtons = [];
+        this.displayModeButtons = [];
+
+        this.sceneButtons.push(document.querySelector('#btn-cylinder'));
+        this.sceneButtons.push(document.querySelector('#btn-cone'));
+        this.sceneButtons.push(document.querySelector('#btn-sphere'));
+        this.sceneButtons.push(document.querySelector('#btn-earth'));
+
+        for(let i = 0; i < this.sceneButtons.length; i++) {
+            this.sceneButtons[i].addEventListener('click', (e) => {
+                if(i == currentScene) return;
+                scenes[currentScene].cleanUp();
+                currentScene = i;
+                displayMode = 0;
+                scenes[currentScene].init();
+                this.updateSceneControls();
+                this.updateDisplayMode();
+            });
+        }
+
+        this.displayModeButtons.push(document.querySelector('#btn-mode-wireframe'));
+        this.displayModeButtons.push(document.querySelector('#btn-mode-surface'));
+        this.displayModeButtons.push(document.querySelector('#btn-mode-texture'));
+
+        for(let i = 0; i < this.displayModeButtons.length; i++) {
+            this.displayModeButtons[i].addEventListener('click', (e) => {
+                if(currentScene == 3) return;
+                displayMode = i;
+                this.updateSceneControls();
+                this.updateDisplayMode();
+            });
+        }
+
+
+
+        this.showAxesBtn = document.querySelector('#btn-axes');
+        this.showAxesBtn.addEventListener('click', (e) => {
+            showAxes = !showAxes;
+            this.updateAxes();
+        });
+
+        document.querySelector('#btn-fs').addEventListener('click', (e) => {
+            document.body.requestFullscreen();
+        });
+
+    }
+
+    updateSceneControls() {
+
+        for(let i = 0; i < this.sceneButtons.length; i++) {
+            if(currentScene == i) this.sceneButtons[i].classList.add('selected');
+            else this.sceneButtons[i].classList.remove('selected');
+        }
+
+        if(currentScene != 3) {
+            for(let i = 0; i < this.displayModeButtons.length; i++) {
+                this.displayModeButtons[i].style.display = 'block';
+                if(displayMode == i) this.displayModeButtons[i].classList.add('selected');
+                else this.displayModeButtons[i].classList.remove('selected');
+            }
+        }else{
+            for(let i = 0; i < this.displayModeButtons.length; i++) {
+                this.displayModeButtons[i].style.display = 'none';
+            }
+        }
+
+    }
+
+    updateDisplayMode() {
+        switch(displayMode) {
+            case 0: scenes[currentScene].onShowWireframe(); break;
+            case 1: scenes[currentScene].onShowNormal(); break;
+            case 2: scenes[currentScene].onShowTexture(); break;
+        }
+    }
+
+    updateAxes() {
+        if(showAxes) this.showAxesBtn.classList.add('selected');
+        else this.showAxesBtn.classList.remove('selected');
+        axesGroup.visible = showAxes;
+        axesGroup.traverse((e) => {
+            if(e.name == 'label') e.visible = showAxes;
+        });
+    }
+
+}
+
+const axesGroup = new THREE.Group();
+const ui = new UiController();
 
 function addLine(group, color, points) {
     const material = new THREE.LineBasicMaterial({color: color});
@@ -89,6 +240,8 @@ function addLabel(group, data) {
 
     const label = new CSS2DObject(div);
     label.position.set(data.pos.x, data.pos.y, data.pos.z);
+    label.name = 'label';
+    label.visible = false;
     group.add(label);
 
 }
@@ -130,112 +283,50 @@ function addAxes(group, len = 4) {
 
 }
 
-function buildPlane(group) {
+function init() {
 
-    const geometry = new THREE.BufferGeometry();
+    scenes.push(new Sphere());
+    scenes.push(new Sphere());
+    scenes.push(new Sphere());
+    scenes.push(new Sphere());
 
-    const width = 1;
-    const height = 1;
-    const widthSegments = 1;
-    const heightSegments = 1;
+    camera.position.set(5, 5, 5);
+    camera.lookAt(0, 0, 0);
 
-    const width_half = width / 2;
-    const height_half = height / 2;
+    addAxes(axesGroup);
+    scene.add(axesGroup);
 
-    const gridX = Math.floor( widthSegments );
-    const gridY = Math.floor( heightSegments );
-
-    const gridX1 = gridX + 1;
-    const gridY1 = gridY + 1;
-
-    const segment_width = width / gridX;
-    const segment_height = height / gridY;
-
-    //
-
-    const indices = [];
-    const vertices = [];
-    const normals = [];
-    const uvs = [];
-
-    for ( let iy = 0; iy < gridY1; iy ++ ) {
-
-        const y = iy * segment_height - height_half;
-
-        for ( let ix = 0; ix < gridX1; ix ++ ) {
-
-            const x = ix * segment_width - width_half;
-
-            vertices.push( x, - y, 0 );
-
-            normals.push( 0, 0, 1 );
-
-            uvs.push( ix / gridX );
-            uvs.push( 1 - ( iy / gridY ) );
-
+    const args = {
+        initCamera: () => {
+            camera.position.set(5, 5, 5);
+            camera.lookAt(0, 0, 0);
         }
+    };
 
-    }
+    gui.add(args, 'initCamera').name('Postavi kameru');
 
-    for ( let iy = 0; iy < gridY; iy ++ ) {
+    scenes[currentScene].init();
 
-        for ( let ix = 0; ix < gridX; ix ++ ) {
-
-            const a = ix + gridX1 * iy;
-            const b = ix + gridX1 * ( iy + 1 );
-            const c = ( ix + 1 ) + gridX1 * ( iy + 1 );
-            const d = ( ix + 1 ) + gridX1 * iy;
-
-            indices.push( a, b, d );
-            indices.push( b, c, d );
-
-        }
-
-    }
-
-    console.log(uvs);
-
-    geometry.setIndex( indices );
-    geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ) );
-    //geometry.setAttribute( 'normal', new THREE.Float32BufferAttribute( normals, 3 ) );
-   // geometry.setAttribute( 'uv', new THREE.Float32BufferAttribute( uvs, 2 ) );
-
-    const material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide, wireframe: false} );
-    const plane = new THREE.Mesh( geometry, material );
-    group.add( plane );
+    ui.updateDisplayMode();
+    ui.updateSceneControls();
+    ui.updateAxes();
 
 }
 
-function init(group) {
+function animate() {
 
+    requestAnimationFrame(animate);
 
-    let light = new THREE.AmbientLight(0xFFFFFF, 0.4);
-    light.position.set(30, 10, 10);
-    group.add(light);
+    
+    scenes[currentScene].update(clock.getDelta());
+    controls.update();
 
-   //group.add(new THREE.PointLight(0xFFFFFF, 0.5));
+    renderer.render(scene, camera);
+    labelRenderer.render(scene, camera);
 
-    let geometry = new THREE.BoxGeometry( 1, 1, 1, 100, 100, 100 );
-    let material = new THREE.MeshPhongMaterial( { color: 0x00ff00} );
-    let cube = new THREE.Mesh( geometry, material );   
-    cube.position.set(0.5, 0.5, 0.5);
-    group.add(cube);
+};
 
-    //buildPlane(group);
-
-
-}
-
-// #endregion
-
-// #region KARLO
-
-// #endregion
-
-// #region ANTONIO
-
-// #endregion
-
-// #region JOSIP
+init();
+animate();
 
 // #endregion
