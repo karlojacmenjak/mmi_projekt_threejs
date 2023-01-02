@@ -38,15 +38,94 @@ const clock = new THREE.Clock();
 
 // #endregion
 
-// #region KARLO
+// #region Cylinder
+
+class Cylinder {
+
+    constructor() {
+        
+    }
+
+    init() {
+
+        this.group = new THREE.Group();
+
+        // ....
+
+        this.guiElements = [];
+        
+    }
+
+    update(dt) {
+        
+    }
+
+    onShowWireframe() {
+        
+    }
+
+    onShowNormal() {
+        
+    }
+
+    onShowTexture() {
+        
+    }
+
+    cleanUp() {
+        scene.remove(this.group);
+        for(let i = 0; i < this.guiElements.length; i++) this.guiElements[i].destroy();
+    }
+
+}
+
 
 // #endregion
 
-// #region ANTONIO
+// #region Cone
+
+class Cone {
+
+    constructor() {
+        
+    }
+
+    init() {
+
+        this.group = new THREE.Group();
+
+        // ....
+
+        this.guiElements = [];
+        
+    }
+
+    update(dt) {
+        
+    }
+
+    onShowWireframe() {
+        
+    }
+
+    onShowNormal() {
+        
+    }
+
+    onShowTexture() {
+        
+    }
+
+    cleanUp() {
+        scene.remove(this.group);
+        for(let i = 0; i < this.guiElements.length; i++) this.guiElements[i].destroy();
+    }
+
+}
 
 // #endregion
 
-// #region JOSIP
+// #region Sphere
 
 class Sphere {
 
@@ -285,8 +364,8 @@ function addAxes(group, len = 4) {
 
 function init() {
 
-    scenes.push(new Sphere());
-    scenes.push(new Sphere());
+    scenes.push(new Cylinder());
+    scenes.push(new Cone());
     scenes.push(new Sphere());
     scenes.push(new Sphere());
 
