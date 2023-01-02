@@ -1,1 +1,104 @@
-\title{My Title}
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[a4paper,left=2.54cm,right=2.54cm,top=2.54cm,bottom=2.54cm]{geometry}
+
+\usepackage[croatian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+
+\usepackage{amsmath} 
+\usepackage{amssymb}
+
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{titlesec}
+\titleformat{\section}{\fontsize{16pt}{20pt}\selectfont\bfseries}{\thesection.}{0.4cm}{}
+\titleformat{\subsection}{\fontsize{14pt}{18pt}\selectfont\bfseries}{\thesubsection.}{0.4cm}{}
+\setlength{\parskip}{10pt}
+
+\titlespacing*{\section}{0pt}{0.5cm}{0pt}
+\titlespacing*{\subsection}{0pt}{0.5cm}{0pt}
+
+\usepackage{enumitem}
+\setlist{topsep=3pt,itemsep=3pt}
+
+\usepackage{graphicx}
+
+\usepackage[numbers]{natbib}
+\setlength{\bibsep}{2pt}
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% NASLOVNICA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\begin{center}
+Sveučilište u Zagrebu\\
+Fakultet organizacije i informatike
+\end{center}
+\vfill
+\begin{center}
+\Large Uvod u THREEjs
+\end{center}
+\vfill
+U Varaždinu, 2.1.2023.\hfill Tim: Karlo Jačmenjak, Antonio Kupčić, Josip Mojzeš
+
+
+\newpage
+\setcounter{page}{1}
+%%%%%%%%%%%%%%%%%%%%%% KRAJ NASLOVNICE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Uvod}
+\textbf{Kardioida} je geometrijsko mjesto odabrane točke $T$ na kružnici koja se kotrlja (bez klizanja) po drugoj fiksnoj kružnici istog polumjera. Na temelju definicije kardioide mogu se izvesti njezine parametarske jednadžbe. Parametarske jednadžbe nisu jedinstvene jer ovise o tome gdje ćemo u ravnini postaviti fiksnu kružnicu i koju ćemo točku odabrati na kružnici koja se kotrlja.\par 
+Ukoliko fiksnu kružnicu polumjera \(a\) postavimo tako da ima središte \(S_1\) u ishodištu koordinatnog sustava, nadalje ako na početku kružnicu koja se kotrlja postavimo tako da ima središte $S_2$ u točki $(2a,0)$, a na njoj odaberemo točku $T$ s koordinatama $(a,0)$, tada parametarske jednadžbe kardioide glase
+\begin{align*}
+x&=a\big(2\cos{t}-\cos{2t})\\ 
+y&=a\big(2\sin{t}-\sin{2t}\big).
+\end{align*}
+pri čemu je $t\in[0,2\pi]$. U donjem apletu je upravo takva početna situacija (kada je $t=0$) 
+i stavljeno je da kružnice imaju polumjer $1$, tj. $a=1$.\par 
+O parametru $t$ možemo razmišljati kao o vremenu. U promatranom trenutku $t$ kružnica koja se kotrlja se nalazi u nekom određenom položaju 
+s obzirom na fiksnu kružnicu, a samim time i odabrana točka $T$ se nalazi na određenoj poziciji u ravnini.
+\subsection{Podnaslov unutar uvoda}
+Na primjer, definicija derivacije funkcije $f:I\to\mathbb{R}$ u točki $x_0\in I$ glasi
+$$f'(x_0)=\lim_{\Delta x\to 0}{\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}}.$$
+Ako želimo formulu automatski numerirati,
+\begin{equation}
+f'(x_0)=\lim_{\Delta x\to 0}{\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}},
+\end{equation}
+ili ju želimo označiti svojim simbolom
+\begin{equation}
+f'(x_0)=\lim_{\Delta x\to 0}{\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}}.\tag{$\clubsuit$}
+\end{equation}
+
+\newpage
+
+\section{Aplet}
+Cilj apleta je vizualno ilustrirati definiciju kardioide. Opišimo ukratko funkcioniranje apleta:
+\begin{itemize}
+\item Jedino što možete mijenjati u apletu je vrijednost parametra $t$ pomoću miša.
+\item Za preciznije i sporije kretanje točke $T$, parametar $t$ mijenjajte pomoću strelica na tastaturi 
+tako da najprije mišem kliknete na kružić od slidera, a nakon toga strelicama lijevo-desno mijenjate vrijednosti parametra $t$.
+\item Pritiskom na tipku s trokutićem u donjem lijevom kutu možete pokrenuti animaciju tako da se parametar $t$ sam mijenja. Animaciju možete prekinuti pritiskom na tu istu tipku.
+\item Prilikom kotrljanja kružnice točka $T$ ostavlja trag tako da se jasno vidi njezino geometrijsko mjesto točaka koje zovemo kardioida.
+\item Ukoliko aplet ima fokus, pritiskom na \verb|CTRL+F| možete obrisati trag koji je ostavila točka $T$ prilikom kotrljanja kružnice.
+\item Pritiskom na tipku u gornjem desnom kutu možete odmah vratiti aplet na početno zadane uvjete.
+\end{itemize}
+\LaTeX{} može ubaciti vanjsku sliku u svoj dokument. Slika pritom mora biti u odgovarajućem formatu i najjednostavnije je da se nalazi u tekućem
+direktoriju \verb|tex| datoteke. Nadalje, \LaTeX{} ima dosta svojih fantastičnih paketa za crtanje slika kao što je \verb|tikz| paket.\par
+\vspace*{5mm}
+\begin{figure}[!h]
+\centering
+
+\caption{Kardioida u \texttt{GeoGebri}}
+\end{figure}
+
+\paragraph{Referenciranje na literaturu.} Prema literaturi \cite{Maric} vrijedi\,\ldots \ Prema literaturi \cite{geo} mora biti\,\ldots
+
+\begin{thebibliography}{9}
+\bibitem{Maric} An\dj elko Mari\'c, \emph{Vektori -- zbirka rije\v{s}enih zadataka}, Element, Zagreb, 1997.
+\bibitem{geo} GeoGebra, \texttt{http://www.geogebra.org/cms/}, (9.3.2014.)
+\end{thebibliography}
+
+\end{document}
