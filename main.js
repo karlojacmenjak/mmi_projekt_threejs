@@ -151,13 +151,22 @@ class Cone {
 
 // #region Sphere
 
+class DisplayMode {
+    static wireframe = 1;
+    static surface = 2;
+    static texture = 3;
+}
+
 class Sphere {
 
     constructor() {
         
         this.texture = new THREE.TextureLoader().load(
-            'assets/cube4.png'
+            'assets/cube3.png'
         );
+        
+        
+        // build
 
     }
 
@@ -165,10 +174,11 @@ class Sphere {
 
         this.group = new THREE.Group();
 
-        this.geometry = new THREE.SphereGeometry(1, 10, 10);
+        this.geometry = new THREE.SphereGeometry(1, 50, 50);
 
         this.material = new THREE.MeshLambertMaterial({
-            color: 0xFF00FF,
+            color: 0xff00ff,
+            map: this.texture,
         });
 
         this.object = new THREE.Mesh(this.geometry, this.material);
@@ -208,19 +218,19 @@ class Sphere {
     onShowWireframe() {
         this.material.wireframe = true;
         this.ambientLight.intensity = 1;
-        this.material.map = undefined;
+        //this.material.map = undefined;
     }
 
     onShowNormal() {
         this.material.wireframe = false;
         this.ambientLight.intensity = 0.08;
-        this.material.map = undefined;
+        //this.material.map = undefined;
     }
 
     onShowTexture() {
         this.material.wireframe = false;
         this.ambientLight.intensity = 0.08;
-        this.material.map = this.texture;
+        //this.material.map = this.texture;
        
     }
 
