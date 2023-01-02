@@ -49,13 +49,13 @@ class Cylinder {
     init() {
 
         this.group = new THREE.Group();
-        this.geometry = new THREE.CylinderGeometry(1, 10, 10);
+        this.geometry = new THREE.CylinderGeometry(1, 1, 1, 8);
         this.material = new THREE.MeshLambertMaterial({
             color: 0xFF00FF,
         });
 
         this.object = new THREE.Mesh(this.geometry, this.material);
-        
+
         this.light = new THREE.DirectionalLight(0xffffff, 1.2);
         this.light.position.set(5, 0, 5);
 
