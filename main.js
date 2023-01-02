@@ -87,33 +87,62 @@ class Cylinder {
 class Cone {
 
     constructor() {
-        //Neka promjena
     }
 
     init() {
 
         this.group = new THREE.Group();
+        this.geometry = new THREE.ConeGeometry(1,10,10);
+        this.material = new THREE.MeshLambertMaterial({
+            color: 0xFF00FF,
+        });
+        this.object = new THREE.Mesh(this.geometry, this.material);
 
-        // ....
+        this.light = new THREE.DirectionalLight(0xffffff, 1.2);
+        this.light.position.set(5, 0, 5);
+
+        this.ambientLight = new THREE.AmbientLight(0xFFFFFF);
+
+        this.group.add(this.light);
+        this.group.add(this.object);
+        this.group.add(this.ambientLight);
+        scene.add(this.group);
+        
+        this.args = {
+            rotate: false,
+            rotationSpeed: 1,
+        };
 
         this.guiElements = [];
+        this.guiElements.push(gui.add(this.object.position, 'x', -5, 5, 0.1));
+        this.guiElements.push(gui.add(this.object.position, 'y', -5, 5, 0.1));
+        this.guiElements.push(gui.add(this.object.position, 'z', -5, 5, 0.1));
+        this.guiElements.push(gui.add(this.args, 'rotate').name('rotiraj'));
+        this.guiElements.push(gui.add(this.args, 'rotationSpeed').name('brzina'));
+        
         
     }
 
     update(dt) {
-        
+        controls.target.set(this.object.position.x, this.object.position.y, this.object.position.z);
+        if(this.args.rotate) {
+            this.object.rotation.y += this.args.rotationSpeed * dt;
+        }
     }
 
     onShowWireframe() {
-        
+        this.material.wireframe = true;
+        this.ambientLight.intensity = 1;
     }
 
     onShowNormal() {
-        
+        this.material.wireframe = false;
+        this.ambientLight.intensity = 0.08;
     }
 
     onShowTexture() {
-        
+        this.material.wireframe = false;
+        this.ambientLight.intensity = 0.08;
     }
 
     cleanUp() {
@@ -130,7 +159,6 @@ class Cone {
 class Sphere {
 
     constructor() {
-        // NEKA PROMJENA
     }
 
     init() {
