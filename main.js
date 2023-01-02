@@ -38,6 +38,12 @@ const clock = new THREE.Clock();
 
 // #endregion
 
+class DisplayMode {
+    static wireframe = 0;
+    static surface = 1;
+    static texture = 2;
+}
+
 // #region Cylinder
 
 class Cylinder {
@@ -189,12 +195,6 @@ class Cone {
 
 // #region Sphere
 
-class DisplayMode {
-    static wireframe = 1;
-    static surface = 2;
-    static texture = 3;
-}
-
 class Sphere {
 
     constructor() {
@@ -202,21 +202,21 @@ class Sphere {
         this.texture = new THREE.TextureLoader().load(
             'assets/cube3.png'
         );
-        
-        
-        // build
 
     }
 
-    init() {
+    build(displayMode) {
+
+        console.log(displayMode);
 
         this.group = new THREE.Group();
 
-        this.geometry = new THREE.SphereGeometry(1, 50, 50);
+        this.geometry = new THREE.SphereGeometry(1, 20, 20);
 
         this.material = new THREE.MeshLambertMaterial({
             color: 0xff00ff,
-            map: this.texture,
+            wireframe: displayMode == DisplayMode.wireframe,
+            map: displayMode == DisplayMode.texture ? this.texture : null,
         });
 
         this.object = new THREE.Mesh(this.geometry, this.material);
@@ -224,7 +224,7 @@ class Sphere {
         this.light = new THREE.DirectionalLight(0xffffff, 1.2);
         this.light.position.set(5, 0, 5);
 
-        this.ambientLight = new THREE.AmbientLight(0xFFFFFF);
+        this.ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.02);
 
         this.group.add(this.light);
         this.group.add(this.object);
@@ -251,25 +251,6 @@ class Sphere {
             this.object.rotation.y += this.args.rotationSpeed * dt;
             this.object.rotation.z += this.args.rotationSpeed * dt;
         }
-    }
-
-    onShowWireframe() {
-        this.material.wireframe = true;
-        this.ambientLight.intensity = 1;
-        //this.material.map = undefined;
-    }
-
-    onShowNormal() {
-        this.material.wireframe = false;
-        this.ambientLight.intensity = 0.08;
-        //this.material.map = undefined;
-    }
-
-    onShowTexture() {
-        this.material.wireframe = false;
-        this.ambientLight.intensity = 0.08;
-        //this.material.map = this.texture;
-       
     }
 
     cleanUp() {
@@ -306,9 +287,8 @@ class UiController {
                 scenes[currentScene].cleanUp();
                 currentScene = i;
                 displayMode = 0;
-                scenes[currentScene].init();
+                scenes[currentScene].build(displayMode);
                 this.updateSceneControls();
-                this.updateDisplayMode();
             });
         }
 
@@ -320,8 +300,9 @@ class UiController {
             this.displayModeButtons[i].addEventListener('click', (e) => {
                 if(currentScene == 3) return;
                 displayMode = i;
+                scenes[currentScene].cleanUp();
+                scenes[currentScene].build(displayMode);
                 this.updateSceneControls();
-                this.updateDisplayMode();
             });
         }
 
@@ -358,14 +339,6 @@ class UiController {
             }
         }
 
-    }
-
-    updateDisplayMode() {
-        switch(displayMode) {
-            case 0: scenes[currentScene].onShowWireframe(); break;
-            case 1: scenes[currentScene].onShowNormal(); break;
-            case 2: scenes[currentScene].onShowTexture(); break;
-        }
     }
 
     updateAxes() {
@@ -443,8 +416,8 @@ function addAxes(group, len = 4) {
 
 function init() {
 
-    scenes.push(new Cylinder());
-    scenes.push(new Cone());
+    scenes.push(new Sphere());
+    scenes.push(new Sphere());
     scenes.push(new Sphere());
     scenes.push(new Sphere());
 
@@ -463,9 +436,8 @@ function init() {
 
     gui.add(args, 'initCamera').name('Postavi kameru');
 
-    scenes[currentScene].init();
+    scenes[currentScene].build(displayMode);
 
-    ui.updateDisplayMode();
     ui.updateSceneControls();
     ui.updateAxes();
 
@@ -475,7 +447,6 @@ function animate() {
 
     requestAnimationFrame(animate);
 
-    
     scenes[currentScene].update(clock.getDelta());
     controls.update();
 
