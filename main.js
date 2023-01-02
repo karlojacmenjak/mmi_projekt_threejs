@@ -130,7 +130,11 @@ class Cone {
 class Sphere {
 
     constructor() {
-        // NEKA PROMJENA
+        
+        this.texture = new THREE.TextureLoader().load(
+            'assets/cube4.png'
+        );
+
     }
 
     init() {
@@ -180,16 +184,19 @@ class Sphere {
     onShowWireframe() {
         this.material.wireframe = true;
         this.ambientLight.intensity = 1;
+        this.material.map = undefined;
     }
 
     onShowNormal() {
         this.material.wireframe = false;
         this.ambientLight.intensity = 0.08;
+        this.material.map = undefined;
     }
 
     onShowTexture() {
         this.material.wireframe = false;
         this.ambientLight.intensity = 0.08;
+        this.material.map = this.texture;
        
     }
 
