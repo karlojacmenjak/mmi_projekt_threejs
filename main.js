@@ -87,7 +87,7 @@ class Cylinder {
 class Cone {
 
     constructor() {
-        
+        //Neka promjena
     }
 
     init() {
