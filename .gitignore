@@ -1,6 +1,6 @@
 *.fls
 *.log
 *.synctex.gz
-*.aux
 *.fdb_latexmk
 *.pdf
+three.aux
