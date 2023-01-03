@@ -133,13 +133,21 @@ class Cone {
     constructor() {
     }
 
-    init() {
+    build(displayMode) {
+
+        console.log(displayMode);
 
         this.group = new THREE.Group();
+
         this.geometry = new THREE.ConeGeometry(1,5,5);
+
         this.material = new THREE.MeshLambertMaterial({
             color: 0xFF00FF,
+            wireframe: displayMode == DisplayMode.wireframe,
+            map: displayMode == DisplayMode.texture ? this.texture : null,
         });
+
+    
         this.object = new THREE.Mesh(this.geometry, this.material);
 
         this.light = new THREE.DirectionalLight(0xffffff, 1.2);
@@ -423,7 +431,7 @@ function addAxes(group, len = 4) {
 function init() {
 
     scenes.push(new Cylinder());
-    scenes.push(new Sphere());
+    scenes.push(new Cone());
     scenes.push(new Sphere());
     scenes.push(new Sphere());
 
