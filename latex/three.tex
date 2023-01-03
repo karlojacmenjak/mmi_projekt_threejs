@@ -65,13 +65,17 @@ U Varaždinu, 2.1.2023.
     \includegraphics[scale=0.5]{image/zadatak1.png}
 \end{center}
 
-
 Dakle kao što vidimo na slici 3D scena se kreira na Three.Scene() funkcijom. Da bi smo postavili kameru trebamo koristiti četiri varijable, a to su 
-varijabla fov koja se koristi za širinu kuta gledanja, aspect za omjer visine i širine pogleda pomoću ugrađenih objekata browsera. 
+varijabla fov koja se koristi za širinu kuta gledanja, aspect za omjer visine i širine pogleda pomoću ugrađenih objekata browsera, kamera near je 
+varijabla koja se koristi za predstavljanje najmanje udaljenosti gdje se objekt ne prikazuje na kameri te varijabla far koja je predstavljanje najveću 
+udaljenost gdje se objekt ne prikazuje na kameri.
+varijabla camera služi tome da se prije navedene četiri varijable stave kao parametri u funkciju PerspectiveCamera.
 
 \begin{center}
     \includegraphics[scale=0.5]{image/zadatak1_objekti.png}
 \end{center}
+
+
 
 \subsection{Podnaslov unutar uvoda}
 Na primjer, definicija derivacije funkcije $f:I\to\mathbb{R}$ u točki $x_0\in I$ glasi
