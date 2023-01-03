@@ -2,5 +2,5 @@
 *.log
 *.synctex.gz
 *.fdb_latexmk
-*.pdf
+three.pdf
 three.aux

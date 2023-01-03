@@ -66,18 +66,19 @@ U Varaždinu, 2.1.2023.
 \end{center}
 
 Dakle kao što vidimo na slici 3D scena se kreira na Three.Scene() funkcijom. Da bi smo postavili kameru trebamo koristiti četiri varijable, a to su 
-varijabla fov koja se koristi za širinu kuta gledanja, aspect za omjer visine i širine pogleda pomoću ugrađenih objekata browsera, near je 
-varijabla koja se koristi za predstavljanje najmanje udaljenosti gdje se objekt ne prikazuje na kameri te varijabla far koja je predstavljanje najveću 
+varijabla \textit{fov} koja se koristi za širinu kuta gledanja, \textit{aspect} za omjer visine i širine pogleda pomoću ugrađenih objekata browsera, \textit{near} je 
+varijabla koja se koristi za predstavljanje najmanje udaljenosti gdje se objekt ne prikazuje na kameri te varijabla \textit{far} koja je predstavljanje najveću 
 udaljenost gdje se objekt ne prikazuje na kameri.
-varijabla camera služi tome da se prije navedene četiri varijable stave kao parametri u funkciju PerspectiveCamera.
+varijabla \textit{camera} služi tome da se prije navedene četiri varijable stave kao parametri u funkciju \texttt{PerspectiveCamera}.
 
 \begin{center}
     \includegraphics[scale=0.5]{image/zadatak1_objekti.png}
 \end{center}
-Da bi smo dodali objekt u scenu moramo napraviti varijablu object koja je predstavlja fukciju Mesh. Mesh je funkcija koja poprima dva parametra, a to su materijal i 
-vrstu geometrijskog tijela. U kodu na slici se radi o sferi pa se prvo mora stvoriti varijabla geometry koja predstavlja funkciju SphereGeometry koja stvara sferu.
-Drugi parametar funkcije Mesh je material. Material je također varijabla koja predstavlja funkciju MeshLamberMaterial koja stvara materijal prema određenoj boji, 
-prikazu i teksturi. Kada smo to sve napravili tada možemo pozvati scene.add(object) da stvorimo objekt. Svijetlo  se također postavlja sa scene.add().
+Da bi smo dodali objekt u scenu moramo napraviti varijablu \textit{object} koja je predstavlja fukciju \texttt{Mesh}. \texttt{Mesh} je funkcija koja poprima dva parametra, a to su materijal i 
+vrstu geometrijskog tijela. U kodu na slici se radi o sferi pa se prvo mora stvoriti varijabla \textit{geometry} koja predstavlja funkciju \texttt{SphereGeometry} koja stvara sferu.
+Drugi parametar funkcije \texttt{Mesh} je material. \textit{Material} je također varijabla koja predstavlja funkciju \texttt{MeshLamberMaterial} koja stvara materijal prema određenoj boji, 
+prikazu i teksturi. Kada smo to sve napravili tada možemo pozvati \texttt{add} funkciju da stvorimo objekt. Svijetlo  se također postavlja sa \texttt{add}.
+Varijabla \textit{light} predstavlja funkciju \texttt{DirectionalLight} koja stvara svijetlost te tu svijetlost postavljamo na neku poziciju. 
 
 
 
