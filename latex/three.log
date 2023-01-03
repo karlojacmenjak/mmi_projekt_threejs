@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.4.28)  3 JAN 2023 14:49
-=======
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.4.28)  3 JAN 2023 13:24
->>>>>>> Stashed changes
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.4.28)  3 JAN 2023 15:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -276,8 +272,7 @@ Package grfext Info: Graphics extension search list:
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 )) [1
 
-<<<<<<< Updated upstream
-{C:/Users/karlo/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+{C:/Users/Antonio/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
 <image/zadatak1.png, id=6, 920.43875pt x 598.235pt>
 File: image/zadatak1.png Graphic file (type png)
 <use image/zadatak1.png>
@@ -288,66 +283,37 @@ Overfull \hbox (24.8748pt too wide) in paragraph at lines 61--62
 [][] 
  []
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 63.
-(C:\Users\karlo\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+LaTeX Font Info:    Trying to load font information for U+msa on input line 66.
+(C:\Users\Antonio\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 63.
- (C:\Users\karlo\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1 <./image/zadatak1.png>] [2]
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 84.
- (C:\Users\karlo\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
-File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-)
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 89.
- (C:\Users\karlo\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
-=======
-{C:/Users/Antonio/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 53.
- (C:\Users\Antonio\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 53.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 66.
  (C:\Users\Antonio\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1]
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 80.
+) [1 <./image/zadatak1.png>] [2]
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 82.
  (C:\Users\Antonio\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 85.
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 87.
  (C:\Users\Antonio\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
->>>>>>> Stashed changes
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Overfull \hbox (0.41728pt too wide) in paragraph at lines 101--102
+Overfull \hbox (0.41728pt too wide) in paragraph at lines 99--100
 [] \OT1/ptm/b/n/12 Re-fe-ren-ci-ra-nje na li-te-ra-turu. \OT1/ptm/m/n/12 Prema li-te-ra-turi [[]] vri-jedi... Prema li-te-ra-turi [[]] mora biti... 
  []
 
 [3] (three.aux) ) 
 Here is how much of TeX's memory you used:
-<<<<<<< Updated upstream
  5739 strings out of 478582
- 93116 string characters out of 2844344
+ 93235 string characters out of 2843400
  402307 words of memory out of 3000000
  23823 multiletter control sequences out of 15000+600000
  487064 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,6n,67p,375b,278s stack positions out of 10000i,1000n,20000p,200000b,80000s
-{C:/Users/karlo/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}<C:/Users/karlo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/karlo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/karlo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/karlo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/karlo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/karlo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/karlo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/karlo/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/karlo/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/karlo/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/karlo/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on three.pdf (4 pages, 178400 bytes).
-=======
- 5730 strings out of 478582
- 93074 string characters out of 2843400
- 404307 words of memory out of 3000000
- 23817 multiletter control sequences out of 15000+600000
- 487064 words of font info for 65 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 60i,12n,67p,552b,278s stack positions out of 10000i,1000n,20000p,200000b,80000s
-{C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}<C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on three.pdf (3 pages, 128939 bytes).
->>>>>>> Stashed changes
+ 60i,6n,67p,358b,278s stack positions out of 10000i,1000n,20000p,200000b,80000s
+{C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}<C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Antonio/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on three.pdf (4 pages, 175872 bytes).
 PDF statistics:
  74 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
