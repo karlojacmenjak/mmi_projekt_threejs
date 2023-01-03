@@ -87,10 +87,16 @@ Drugi parametar funkcije \texttt{Mesh} je material. \textit{Material} je takođe
 prikazu i teksturi. Kada smo to sve napravili tada možemo pozvati \texttt{add} funkciju da stvorimo objekt. Svijetlo  se također postavlja sa \texttt{add}.
 Varijabla \textit{light} predstavlja funkciju \texttt{DirectionalLight} koja stvara svijetlost te tu svijetlost postavljamo na neku poziciju. 
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.5]{image/zadatak1_kontrole.png}
+    \caption{Primjer koda za postavljanje kamere.}
+\end{figure}
 
+Interakcija preko miša i tastature se implementira se postiže sa objektima OrbitControls i renderer. Orbit controls omogućava da se kamera kreće oko modela,
+a CSS2DRenderer prikazuje sve potrebne elemente modela.
 
-
-
+\pagebreak
 \subsection{Podnaslov unutar uvoda}
 Na primjer, definicija derivacije funkcije $f:I\to\mathbb{R}$ u točki $x_0\in I$ glasi
 $$f'(x_0)=\lim_{\Delta x\to 0}{\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}}.$$
