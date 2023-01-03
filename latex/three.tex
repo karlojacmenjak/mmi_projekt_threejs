@@ -64,7 +64,7 @@ U Varaždinu, 2.1.2023.
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.5]{image/zadatak1.png}
-    \caption{Example of a parametric plot ($\sin (x), \cos(x), x$)}
+    \caption{Primjer koda za postavljanje kamere.}
 \end{figure}
 
 
@@ -74,18 +74,18 @@ varijabla koja se koristi za predstavljanje najmanje udaljenosti gdje se objekt 
 udaljenost gdje se objekt ne prikazuje na kameri.
 varijabla \textit{camera} služi tome da se prije navedene četiri varijable stave kao parametri u funkciju \texttt{PerspectiveCamera}.
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.5]{image/zadatak1_objekti.png}
     \caption{figure}{Figure in a center scope}
 \end{figure}
 
-
+\pagebreak
 Da bi smo dodali objekt u scenu moramo napraviti varijablu \textit{object} koja je predstavlja fukciju \texttt{Mesh}. \texttt{Mesh} je funkcija koja poprima dva parametra, a to su materijal i 
 vrstu geometrijskog tijela. U kodu na slici se radi o sferi pa se prvo mora stvoriti varijabla \textit{geometry} koja predstavlja funkciju \texttt{SphereGeometry} koja stvara sferu.
 Drugi parametar funkcije \texttt{Mesh} je material. \textit{Material} je također varijabla koja predstavlja funkciju \texttt{MeshLamberMaterial} koja stvara materijal prema određenoj boji, 
 prikazu i teksturi. Kada smo to sve napravili tada možemo pozvati \texttt{add} funkciju da stvorimo objekt. Svijetlo  se također postavlja sa \texttt{add}.
-Varijabla \textit{light} predstavlja funkciju \texttt{DirectionalLight koja stvara svijetlost te tu svijetlost postavljamo na neku poziciju}. 
+Varijabla \textit{light} predstavlja funkciju \texttt{DirectionalLight} koja stvara svijetlost te tu svijetlost postavljamo na neku poziciju. 
 
 
 
