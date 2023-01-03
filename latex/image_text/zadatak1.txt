@@ -1,0 +1,17 @@
+// dobivanje WebGL konteksta
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+
+//način kreiranja 3D scene
+const scene = new THREE.Scene();
+
+//postavljanje kamere
+
+var fov = 60; // <- širina kuta gledanja kamere
+var aspect = window.innerWidth / window.innerHeight; //omjer visine i širine pogleda kamere
+var near = 0.1 // najmanja udaljenost objekta od kamere nakon koje se ne prikazuju objekt
+var far = 1000 // najveća udaljenost objekta nakon od kamere koje se ne prikazuju objekt
+
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
