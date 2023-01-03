@@ -74,6 +74,12 @@ varijabla camera služi tome da se prije navedene četiri varijable stave kao pa
 \begin{center}
     \includegraphics[scale=0.5]{image/zadatak1_objekti.png}
 \end{center}
+Da bi smo dodali objekt u scenu moramo napraviti varijablu object koja je predstavlja fukciju Mesh. Mesh je funkcija koja poprima dva parametra, a to su materijal i 
+vrstu geometrijskog tijela. U kodu na slici se radi o sferi pa se prvo mora stvoriti varijabla geometry koja predstavlja funkciju SphereGeometry koja stvara sferu.
+Drugi parametar funkcije Mesh je material. Material je također varijabla koja predstavlja funkciju MeshLamberMaterial koja stvara materijal prema određenoj boji, 
+prikazu i teksturi. Kada smo to sve napravili tada možemo pozvati scene.add(object) da stvorimo objekt. Svijetlo  se također postavlja sa scene.add().
+
+
 
 
 
