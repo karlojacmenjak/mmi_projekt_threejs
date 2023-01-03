@@ -50,8 +50,12 @@ class DisplayMode {
 class Cylinder {
 
     constructor() {
+        this.texture = new THREE.TextureLoader().load(
+            'assets/cube3.png'
+        );
         
     }
+
     build(displayMode) {
 
         console.log(displayMode);
@@ -132,6 +136,11 @@ class Cylinder {
 class Cone {
 
     constructor() {
+
+        this.texture = new THREE.TextureLoader().load(
+            'assets/cube3.png'
+        );
+
     }
 
     build(displayMode) {
