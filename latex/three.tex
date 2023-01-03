@@ -42,20 +42,24 @@ Fakultet organizacije i informatike
 \Large Uvod u THREEjs
 \end{center}
 \vfill
-U Varaždinu, 2.1.2023.\hfill Tim: Karlo Jačmenjak, Antonio Kupčić, Josip Mojzeš
-
+\begin{flushright}
+Tim: Karlo Jačmenjak \break
+Antonio Kupčić \break
+Josip Mojzeš \break
+\end{flushright}
+U Varaždinu, 2.1.2023. 
 
 \newpage
 \setcounter{page}{1}
 %%%%%%%%%%%%%%%%%%%%%% KRAJ NASLOVNICE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Uvod}
-\textbf{Kardioida} je geometrijsko mjesto odabrane točke $T$ na kružnici koja se kotrlja (bez klizanja) po drugoj fiksnoj kružnici istog polumjera. Na temelju definicije kardioide mogu se izvesti njezine parametarske jednadžbe. Parametarske jednadžbe nisu jedinstvene jer ovise o tome gdje ćemo u ravnini postaviti fiksnu kružnicu i koju ćemo točku odabrati na kružnici koja se kotrlja.\par 
-Ukoliko fiksnu kružnicu polumjera \(a\) postavimo tako da ima središte \(S_1\) u ishodištu koordinatnog sustava, nadalje ako na početku kružnicu koja se kotrlja postavimo tako da ima središte $S_2$ u točki $(2a,0)$, a na njoj odaberemo točku $T$ s koordinatama $(a,0)$, tada parametarske jednadžbe kardioide glase
-\begin{align*}
-x&=a\big(2\cos{t}-\cos{2t})\\ 
-y&=a\big(2\sin{t}-\sin{2t}\big).
-\end{align*}
+\textbf{THREE.js} je JavaScript cross platform biblioteka i sučelje za programiranje aplikacija (API) koje se koristi za stvaranje i prikaz animirane 3D računalne grafike u web pregledniku pomoću WebGL-a. Izvorni kod THREE.js-a je otvorenog tipa.
+
+Za početak rada u THREE.js prvo moramo dobiti WebGL kontekst, stvoriti novu scenu 
+
+\includegraphics[scale=0.5]{image/zadatak1.png}
+
 pri čemu je $t\in[0,2\pi]$. U donjem apletu je upravo takva početna situacija (kada je $t=0$) 
 i stavljeno je da kružnice imaju polumjer $1$, tj. $a=1$.\par 
 O parametru $t$ možemo razmišljati kao o vremenu. U promatranom trenutku $t$ kružnica koja se kotrlja se nalazi u nekom određenom položaju 
