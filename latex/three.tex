@@ -105,23 +105,144 @@ a CSS2DRenderer prikazuje sve potrebne elemente modela.
 \section{Zadatak 2.}
 
 \subsection{Matematički model mrežastog prikaza za valjak}
-\begin{flushleft}
-    \begin{tabular}{||c | c | c ||} 
+\begin{center}
+    \begin{tabular}{||c | c | c | c ||} 
      \hline
-     edge & start & end \\ [0.5ex] 
-     \hline\hline
-     1 & 6 & 87837  \\ 
+     vrh & x & y & z \\ [0.5ex] 
      \hline
-     2 & 7 & 78  \\
+     $A_1$ & 1 & 1 & 0  \\ 
      \hline
-     3 & 545 & 778  \\
+     $A_2$ & $\sqrt{2}$ & 0 & 0  \\
      \hline
-     4 & 545 & 18744 \\
+     $A_3$ & 1 & -1 & 0  \\
      \hline
-     5 & 88 & 788  \\ [1ex] 
+     $A_4$ & 0 & -$\sqrt{2}$ & 0 \\
+     \hline
+     $A_5$ & -1 & -1 & 0  \\ 
+     \hline
+     $A_6$ & -$\sqrt{2}$ & 0 & 0  \\
+     \hline
+     $A_7$ & -1 & 1 & 0  \\
+     \hline
+     $A_8$ & 0  & $\sqrt{2}$ & 0 \\
+     \hline
+     $A_9$ & 1 & 1 & 2  \\
+     \hline
+     $A_{10}$& $\sqrt{2}$ & 0 & 2 \\
+     \hline
+     $A_{11}$ & 1 & -1 & 2  \\
+     \hline
+     $A_{12}$ & 0 & $\sqrt{2}$ & 2 \\
+     \hline
+     $A_{13}$ & -1 & 1 & 2  \\ 
+     \hline
+     $A_{14}$ & -$\sqrt{2}$ & 0 & 2  \\
+     \hline
+     $A_{15}$ & -1 & -1 & 2  \\
+     \hline
+     $A_{16}$ & 0 & -$\sqrt{2}$ & 2  \\
+     \hline
+     $A_{17}$ & 0  & 0 & 0 \\
+     \hline
+     $A_{18}$ & 0 & 0  & 2\\ [1ex] 
      \hline
     \end{tabular}
-    \end{flushleft}
+    \end{center}
+
+    \begin{figure}[ht]
+        \centering
+        \caption{Tablica točaka.}
+    \end{figure}
+
+    \begin{center}
+        \begin{tabular}{||c | c | c ||} 
+         \hline
+         edge & početak & kraj  \\ [0.5ex] 
+         \hline
+         $e_1$ & $A_{1}$ & $A_{2}$ \\ 
+         \hline
+         $e_2$ & $A_{2}$ & $A_{3}$  \\
+         \hline
+         $e_3$ & $A_{3}$ & $A_{4}$  \\
+         \hline
+         $e_4$ & $A_{4}$ & $A_{5}$  \\
+         \hline
+         $e_5$ & $A_{5}$ & $A_{6}$ \\ 
+         \hline
+         $e_6$ & $A_{6}$ & $A_{7}$  \\
+         \hline
+         $e_7$ & $A_{7}$ & $A_{8}$  \\
+         \hline
+         $e_8$ & $A_{8}$  & $A_{1}$ \\
+         \hline
+         $e_9$ & $A_{9}$ & $A_{10}$  \\
+         \hline
+         $e_{10}$& $A_{11}$ & $A_{16}$ \\
+         \hline
+         $e_{11}$ & $A_{16}$ & $A_{15}$   \\
+         \hline
+         $e_{12}$ & $A_{15}$ & $A_{14}$  \\
+         \hline
+         $e_{13}$ & $A_{13}$ & $A_{12}$   \\ 
+         \hline
+         $e_{14}$ & $A_{12}$ & $A_{9}$  \\
+         \hline
+         $e_{15}$ & $A_{9}$ & $A_{9}$  \\
+         \hline
+         $e_{16}$ & $A_{10}$ & $A_{2}$  \\
+         \hline
+         $e_{17}$ & $A_{11}$  & $A_{3}$ \\
+         \hline
+         $e_{18}$ & $A_{16}$ & $A_{4}$ \\ 
+         \hline
+         $e_{19}$& $A_{15}$ & $A_{5}$ \\
+         \hline
+         $e_{20}$ & $A_{14}$ & $A_{6}$   \\
+         \hline
+         $e_{21}$ & $A_{13}$ & $A_{7}$  \\
+         \hline
+         $e_{22}$ & $A_{12 }$& $A_{8}$ \\ 
+         \hline
+         $e_{23}$ & $A_{1}$ & $A_{17}$  \\
+         \hline
+         $e_{24}$ & $A_{1}$ & $A_{17}$   \\
+         \hline
+         $e_{25}$ & $A_{2}$ & $A_{17}$   \\
+         \hline
+         $e_{26}$ & $A_{3}$  & $A_{17}$  \\
+         \hline
+         $e_{27}$ & $A_{4}$ & $A_{17}$  \\ 
+         \hline
+         $e_{28}$& $A_{5}$ & $A_{17}$  \\
+         \hline
+         $e_{29}$ & $A_{6}$ & $A_{17}$  \\
+         \hline
+         $e_{30}$ & $A_{7}$0 & $A_{17}$  \\
+         \hline
+         $e_{31}$ & $A_{8}$ & $A_{17}$  \\ 
+         \hline
+         $e_{32}$ & $A_{9}$ & $A_{18}$  \\
+         \hline
+         $e_{33}$ & $A_{10}$ & $A_{18}$   \\
+         \hline
+         $e_{34}$ & $A_{11}$ & $A_{18}$   \\
+         \hline
+         $e_{35}$ & $A_{12}$  &$A_{18}$  \\
+         \hline
+         $e_{36}$ & $A_{13}$ &$A_{18}$  \\ 
+         \hline
+         $e_{37}$& $A_{14}$ & $A_{18}$  \\
+         \hline
+         $e_{38}$ & $A_{15}$ & $A_{18}$   \\
+         \hline
+         $e_{39}$ & $A_{16}$ &$A_{18}$ \\[1ex] 
+         
+        \end{tabular}
+        \end{center}
+        \begin{figure}[ht]
+            \centering
+            \caption{Tablica rubova.}
+        \end{figure}
 
     \subsection{Matematički model mrežastog prikaza za stošca}
 \begin{flushleft}
