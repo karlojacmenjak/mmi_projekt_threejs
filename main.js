@@ -298,16 +298,18 @@ class Sphere {
 
         this.geometry = new THREE.SphereGeometry(1, 50, 50);
 
+        let color = 0x2979FF;
+
         switch(displayMode) {
             case DisplayMode.wireframe:
-                this.material = new THREE.MeshLambertMaterial({
-                    color: 0xff00ff,
+                this.material = new THREE.MeshPhongMaterial({
+                    color: color,
                     wireframe: true,
                 });
                 break;
             case DisplayMode.surface:
-                this.material = new THREE.MeshLambertMaterial({
-                    color: 0xff00ff,
+                this.material = new THREE.MeshPhongMaterial({
+                    color: color,
                 });
                 break;
             case DisplayMode.texture:
@@ -324,9 +326,10 @@ class Sphere {
         }
 
         this.object = new THREE.Mesh(this.geometry, this.material);
+        this.object.position.set(0, 1, 0);
 
         this.light = new THREE.DirectionalLight(0xffffff, 2);
-        this.light.position.set(5, 0, 5);
+        this.light.position.set(1, 0, 1);
 
         this.ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.02);
 
@@ -350,7 +353,6 @@ class Sphere {
     }
 
     update(dt) {
-        controls.target.set(this.object.position.x, this.object.position.y, this.object.position.z);
         if(this.args.rotate) {
             this.object.rotation.y += this.args.rotationSpeed * dt;
             this.object.rotation.z += this.args.rotationSpeed * dt;
@@ -390,7 +392,7 @@ class Earth {
 
         this.mountHeight = 1.4;
         this.earthRadius = 2;
-        this.carrierOffset = 0.4;
+        this.carrierOffset = 0.3;
         this.carrierWidth = 0.2;
 
         this.carrierRadius1 = this.earthRadius + this.carrierOffset;
@@ -431,7 +433,8 @@ class Earth {
                 24, 1,
             ),
             new THREE.MeshPhongMaterial({
-                color: 0x1565C0,
+                color: 0x424242,
+                flatShading: true,
             }),
         );
         mount.position.set(0, this.mountHeight / 2, 0);
@@ -450,10 +453,10 @@ class Earth {
         fullGlobe.add(globe);
         fullGlobe.rotation.set(0, rad(-45), 0);
 
-        this.light = new THREE.DirectionalLight(0xffffff, 1);
+        this.light = new THREE.DirectionalLight(0xFFFFFF, 1);
         this.light.position.set(1, 0, 1);
 
-        this.ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.04);
+        this.ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.2);
 
         this.group.add(this.light);
         this.group.add(fullGlobe);
@@ -470,7 +473,7 @@ class Earth {
         let thetaLength = rad(188);
 
         let material = new THREE.MeshPhongMaterial({
-            color: 0x1500C0,
+            color: 0x424242,
             side: THREE.DoubleSide,
         });
 
