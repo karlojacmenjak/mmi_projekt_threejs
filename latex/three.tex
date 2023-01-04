@@ -27,6 +27,7 @@
 
 \usepackage[numbers]{natbib}
 \setlength{\bibsep}{2pt}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
 
 
 \begin{document}
@@ -183,19 +184,26 @@ Nasuprot tome, Phong sjenčanje je izračunavanje boje po fragmentu.
 Osjenčivač vrhova daje podatke o normalama i podatke o položaju kao izlazne varijable za sjenčilo fragmenta. 
 Sjenčalo fragmenta zatim interpolira te varijable i izračunava boju.
 
+\subsection{Neka svojstva materijala}
+\subsubsection{MeshBasicMaterial}
+
+\hspace{10mm} Materijal za crtanje geometrija na jednostavno osjenčan (ravan ili žičani) način.
+
+\subsubsection{MeshDepthMaterial}
+\hspace{10mm} Materijal za crtanje geometrije po dubini. Dubina se temelji na bliskoj i dalekoj ravnini kamere. Bijelo je najbliže, crno je najdalje.
+
+\subsubsection{MeshDistanceMaterial}
+\hspace{10mm} MeshDistanceMaterial interno se koristi za implementaciju mapiranja sjena pomoću PointLighta .
+
+\subsubsection{MeshLambertMaterial}
+\hspace{10mm} Materijal za nesjajne površine, bez odsjaja.
+
+Materijal koristi nefizički zasnovan Lambertov model za izračun refleksije. Ovo može dobro simulirati neke površine (kao što je neobrađeno drvo ili kamen), ali ne može simulirati sjajne površine sa reflektirajućim odsjajima (kao što je lakirano drvo). MeshLambertMaterial koristi sjenčanje po fragmentu.
 
 \pagebreak
 \section{Aplet}
 Cilj apleta je vizualno ilustrirati definiciju kardioide. Opišimo ukratko funkcioniranje apleta: BLA BLA BLA BLA
-
-\LaTeX{} može ubaciti vanjsku sliku u svoj dokument. Slika pritom mora biti u odgovarajućem formatu i najjednostavnije je da se nalazi u tekućem
-direktoriju \verb|tex| datoteke. Nadalje, \LaTeX{} ima dosta svojih fantastičnih paketa za crtanje slika kao što je \verb|tikz| paket.\par
-\vspace*{5mm}
-\begin{figure}[!h]
-\centering
-
-\caption{Kardioida u \texttt{GeoGebri}}
-\end{figure}
+\pagebreak
 
 \paragraph{Referenciranje na literaturu.} Prema literaturi \cite{Maric} vrijedi\,\ldots \ Prema literaturi \cite{geo} mora biti\,\ldots
 
