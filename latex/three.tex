@@ -23,7 +23,7 @@
 \usepackage{enumitem}
 \setlist{topsep=3pt,itemsep=3pt}
 
-\usepackage{graphicx}
+\usepackage{graphicx,caption}
 
 \usepackage[numbers]{natbib}
 \setlength{\bibsep}{2pt}
@@ -42,24 +42,62 @@ Fakultet organizacije i informatike
 \Large Uvod u THREEjs
 \end{center}
 \vfill
-U Varaždinu, 2.1.2023.\hfill Tim: Karlo Jačmenjak, Antonio Kupčić, Josip Mojzeš
-
+\begin{flushright}
+Tim: Karlo Jačmenjak \break
+Antonio Kupčić \break
+Josip Mojzeš \break
+\end{flushright}
+U Varaždinu, 2.1.2023. 
 
 \newpage
 \setcounter{page}{1}
 %%%%%%%%%%%%%%%%%%%%%% KRAJ NASLOVNICE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Uvod}
-\textbf{Kardioida} je geometrijsko mjesto odabrane točke $T$ na kružnici koja se kotrlja (bez klizanja) po drugoj fiksnoj kružnici istog polumjera. Na temelju definicije kardioide mogu se izvesti njezine parametarske jednadžbe. Parametarske jednadžbe nisu jedinstvene jer ovise o tome gdje ćemo u ravnini postaviti fiksnu kružnicu i koju ćemo točku odabrati na kružnici koja se kotrlja.\par 
-Ukoliko fiksnu kružnicu polumjera \(a\) postavimo tako da ima središte \(S_1\) u ishodištu koordinatnog sustava, nadalje ako na početku kružnicu koja se kotrlja postavimo tako da ima središte $S_2$ u točki $(2a,0)$, a na njoj odaberemo točku $T$ s koordinatama $(a,0)$, tada parametarske jednadžbe kardioide glase
-\begin{align*}
-x&=a\big(2\cos{t}-\cos{2t})\\ 
-y&=a\big(2\sin{t}-\sin{2t}\big).
-\end{align*}
-pri čemu je $t\in[0,2\pi]$. U donjem apletu je upravo takva početna situacija (kada je $t=0$) 
-i stavljeno je da kružnice imaju polumjer $1$, tj. $a=1$.\par 
-O parametru $t$ možemo razmišljati kao o vremenu. U promatranom trenutku $t$ kružnica koja se kotrlja se nalazi u nekom određenom položaju 
-s obzirom na fiksnu kružnicu, a samim time i odabrana točka $T$ se nalazi na određenoj poziciji u ravnini.
+\textbf{THREE.js} je JavaScript cross platform biblioteka i sučelje za programiranje aplikacija (API) koje se koristi za stvaranje i prikaz animirane 3D računalne grafike u web pregledniku pomoću WebGL-a. Izvorni kod THREE.js-a je otvorenog tipa.
+
+%\begin{flushleft}
+    Za početak rada u THREE.js prvo moramo dobiti WebGL kontekst, stvoriti novu scenu 
+%\end{flushleft}
+
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.5]{image/zadatak1.png}
+    \caption{Primjer koda za postavljanje kamere.}
+\end{figure}
+
+
+Dakle kao što vidimo na slici 3D scena se kreira na Three.Scene() funkcijom. Da bi smo postavili kameru trebamo koristiti četiri varijable, a to su 
+varijabla \textit{fov} koja se koristi za širinu kuta gledanja, \textit{aspect} za omjer visine i širine pogleda pomoću ugrađenih objekata browsera, \textit{near} je 
+varijabla koja se koristi za predstavljanje najmanje udaljenosti gdje se objekt ne prikazuje na kameri te varijabla \textit{far} koja je predstavljanje najveću 
+udaljenost gdje se objekt ne prikazuje na kameri.
+varijabla \textit{camera} služi tome da se prije navedene četiri varijable stave kao parametri u funkciju \texttt{PerspectiveCamera}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.5]{image/zadatak1_objekti.png}
+    \caption{Primjer koda za dodavanje objekta sceni te postavljanje svijetlosti i materijala.}
+\end{figure}
+
+\pagebreak
+Da bi smo dodali objekt u scenu moramo napraviti varijablu \textit{object} koja je predstavlja fukciju \texttt{Mesh}. \texttt{Mesh} je funkcija koja poprima dva parametra, a to su materijal i 
+vrstu geometrijskog tijela. U kodu na slici se radi o sferi pa se prvo mora stvoriti varijabla \textit{geometry} koja predstavlja funkciju \texttt{SphereGeometry} koja stvara sferu.
+Drugi parametar funkcije \texttt{Mesh} je material. \textit{Material} je također varijabla koja predstavlja funkciju \texttt{MeshLamberMaterial} koja stvara materijal prema određenoj boji, 
+prikazu i teksturi. Kada smo to sve napravili tada možemo pozvati \texttt{add} funkciju da stvorimo objekt. Svijetlo  se također postavlja sa \texttt{add}.
+Varijabla \textit{light} predstavlja funkciju \texttt{DirectionalLight} koja stvara svijetlost te tu svijetlost postavljamo na neku poziciju. 
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.5]{image/zadatak1_kontrole.png}
+    \caption{Primjer koda za interakciju miša i tastature s scenom.}
+\end{figure}
+
+\pagebreak
+Interakcija preko miša i tastature se implementira se postiže sa objektima OrbitControls i renderer. Orbit controls omogućava da se kamera kreće oko modela,
+a CSS2DRenderer prikazuje sve potrebne elemente modela.
+
+
 \subsection{Podnaslov unutar uvoda}
 Na primjer, definicija derivacije funkcije $f:I\to\mathbb{R}$ u točki $x_0\in I$ glasi
 $$f'(x_0)=\lim_{\Delta x\to 0}{\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}}.$$
@@ -75,7 +113,7 @@ f'(x_0)=\lim_{\Delta x\to 0}{\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}}.\tag{$\clu
 \newpage
 
 \section{Aplet}
-Cilj apleta je vizualno ilustrirati definiciju kardioide. Opišimo ukratko funkcioniranje apleta:
+Cilj apleta je vizualno ilustrirati definiciju kardioide. Opišimo ukratko funkcioniranje apleta: BLA BLA BLA BLA
 \begin{itemize}
 \item Jedino što možete mijenjati u apletu je vrijednost parametra $t$ pomoću miša.
 \item Za preciznije i sporije kretanje točke $T$, parametar $t$ mijenjajte pomoću strelica na tastaturi 
@@ -99,6 +137,7 @@ direktoriju \verb|tex| datoteke. Nadalje, \LaTeX{} ima dosta svojih fantastični
 \begin{thebibliography}{9}
 \bibitem{Maric} An\dj elko Mari\'c, \emph{Vektori -- zbirka rije\v{s}enih zadataka}, Element, Zagreb, 1997.
 \bibitem{geo} GeoGebra, \texttt{http://www.geogebra.org/cms/}, (9.3.2014.)
+\bibitem{Youtube} Jeff Anderson \emph{Applied Linear Algebra, Lesson 7, Video 5: Wireframe Model in 3D} \texttt{https://www.youtube.com/watch?v=FDDl5PQBAkM}
 \end{thebibliography}
 
 \end{document}
