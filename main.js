@@ -156,7 +156,7 @@ class Cylinder {
         this.object = new THREE.Mesh(this.geometry, this.material);
 
         this.light = new THREE.DirectionalLight(0xffffff, 1.2);
-        this.light.position.set(5, 0, 5);
+        this.light.position.set(5, 5, 5);
 
         this.ambientLight = new THREE.AmbientLight(0xFFFFFF);
 
@@ -203,7 +203,7 @@ class Cone {
 
     constructor() {
 
-        let name = 'Fabric056';
+        let name = 'Marble023';
 
         this.textureMap = new THREE.TextureLoader().load(
             'assets/' + name + '_1K-JPG/' + name + '_1K_Color.jpg'
@@ -262,8 +262,8 @@ class Cone {
     
         this.object = new THREE.Mesh(this.geometry, this.material);
 
-        this.light = new THREE.DirectionalLight(0xffffff, 1.2);
-        this.light.position.set(5, 0, 5);
+        this.light = new THREE.DirectionalLight(0xffffff, 3);
+        this.light.position.set(0, 4, 0);
 
         this.ambientLight = new THREE.AmbientLight(0xFFFFFF);
 
@@ -310,7 +310,7 @@ class Sphere {
 
     constructor() {
 
-        let name = 'Fabric056';
+        let name = 'Tiles105';
 
         this.textureMap = new THREE.TextureLoader().load(
             'assets/' + name + '_1K-JPG/' + name + '_1K_Color.jpg'
@@ -367,8 +367,8 @@ class Sphere {
 
         this.object = new THREE.Mesh(this.geometry, this.material);
 
-        this.light = new THREE.DirectionalLight(0xffffff, 2);
-        this.light.position.set(5, 0, 5);
+        this.light = new THREE.DirectionalLight(0xffffff, 1.05);
+        this.light.position.set(5, 5, 5);
 
         this.ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.02);
 
