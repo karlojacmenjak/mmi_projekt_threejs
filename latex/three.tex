@@ -161,8 +161,17 @@ a CSS2DRenderer prikazuje sve potrebne elemente modela.
 
 \newpage
 \subsection{Phongov model osvjetljenja}
-Model se zasniva na podacima te se koristi za predviđanje ponašanja sustava, tzv empirijski model. Koristi se kod lokalnog osvjetljenja točke na nekoj površini.
+Phongov model osvjetljenja je računalni model koji se koristi u računalnoj grafici za simuliranje osvjetljenja na površinama objekata u 3D prostoru. Model se zasniva na matematičkom modelu osvjetljenja koji je razvio Bui Tuong Phong, a koji se temelji na fizičkim zakonima o refleksiji svjetlosti.
 
+Model osvjetljenja Phonga opisuje osvjetljenje površine objekta kao linearnu kombinaciju tri komponente: ambijentalne, difuzne i spekularne refleksije.
+
+Ambijentalna refleksija je svjetlost koja dolazi sa svih smjerova i koja se reflektira jednako u svim smjerovima. Ova komponenta se koristi za simuliranje svjetlosti koja dolazi iz okoliša i koja se odbija sa površine objekta.
+
+Difuzna refleksija je svjetlost koja se odbija od površine objekta u svim smjerovima jednako, bez obzira na smjer iz kojeg dolazi. Ova komponenta se koristi za simuliranje svjetlosti koja se odbija od objekta u zavisnosti od njegove boje i teksture.
+
+Spekularna refleksija je svjetlost koja se odbija od površine objekta u jednom specifičnom smjeru. Ova komponenta se koristi za simuliranje bljeska i odsjaja na površini objekta.
+
+Phongov model osvjetljenja se često koristi u računalnoj grafici jer je jednostavan za implementiranje i daje realistične rezultate u većini slučajeva. Međutim, postoje i druge metode za simuliranje osvjetljenja u računalnoj grafici, kao što su radiosity i ray tracing, koje su možda preciznije ali i skuplje za implementiranje.
 \pagebreak
 \section{Aplet}
 Cilj apleta je vizualno ilustrirati definiciju kardioide. Opišimo ukratko funkcioniranje apleta: BLA BLA BLA BLA
