@@ -62,7 +62,7 @@ class Cylinder {
 
         this.group = new THREE.Group();
 
-        this.geometry = new THREE.CylinderGeometry(1, 1, 1, 8);
+        this.geometry = new THREE.CylinderGeometry(1, 1, 8);
 
         this.material = new THREE.MeshLambertMaterial({
             color: 0xff00ff,
