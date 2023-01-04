@@ -372,6 +372,7 @@ class Sphere {
 
         this.ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.02);
 
+        console.log(this.geometry.getAttribute("position"))
         this.group.add(this.light);
         this.group.add(this.object);
         this.group.add(this.ambientLight);
