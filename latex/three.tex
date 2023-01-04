@@ -196,9 +196,20 @@ Sjenčalo fragmenta zatim interpolira te varijable i izračunava boju.
 \hspace{10mm} MeshDistanceMaterial interno se koristi za implementaciju mapiranja sjena pomoću PointLighta .
 
 \subsubsection{MeshLambertMaterial}
-\hspace{10mm} Materijal za nesjajne površine, bez odsjaja.
-
+Materijal za nesjajne površine, bez odsjaja.
 Materijal koristi nefizički zasnovan Lambertov model za izračun refleksije. Ovo može dobro simulirati neke površine (kao što je neobrađeno drvo ili kamen), ali ne može simulirati sjajne površine sa reflektirajućim odsjajima (kao što je lakirano drvo). MeshLambertMaterial koristi sjenčanje po fragmentu.
+
+\pagebreak
+\subsection{Neka svojstva svjetlosti}
+\subsubsection{AmbientLight}
+\hspace{10mm} Ovo svjetlo globalno jednako osvjetljava sve objekte u sceni.
+Ovo se svjetlo ne može koristiti za bacanje sjena jer nema smjer.
+
+\subsubsection{DirectionalLight}
+\hspace{10mm} Svjetlost koja se emitira u određenom smjeru. Ovo svjetlo će se ponašati kao da je beskrajno daleko i da su zrake koje iz njega proizlaze sve paralelne. Uobičajen slučaj za ovo je simulacija dnevnog svjetla; sunce je dovoljno daleko da se njegov položaj može smatrati beskonačnim, a sve svjetlosne zrake koje dolaze s njega su paralelne.
+
+\subsubsection{SpotLight}
+\hspace{10mm} Ovo svjetlo se emitira iz jedne točke u jednom smjeru, duž stošca koji se povećava što je dalje od svjetla.
 
 \pagebreak
 \section{Aplet}
