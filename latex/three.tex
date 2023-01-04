@@ -345,23 +345,85 @@ Ovo se svjetlo ne može koristiti za bacanje sjena jer nema smjer.
 \hspace{10mm} Ovo svjetlo se emitira iz jedne točke u jednom smjeru, duž stošca koji se povećava što je dalje od svjetla.
 
 \pagebreak
-\section{Zadatak 3}
+
+
+\section{Zadatak 3.}
+Najučinkovitiji način za transformiranje koordinata u trodimenzionalnom prostoru je uporabom
+linearnog operatora, odnosno matrica transformacija. U nastavku su prikazane matrice transformacija
+za translacija, skaliranje te rotaciju oko x, y i z osi koje Three.js koristi.
+
+Translacija
+\[
+T_{tx,ty,tz}=
+\begin{bmatrix}
+    1 & 0 & 0 & tx \\
+    0 & 1 & 0 & ty \\
+    0 & 0 & 1 & tz \\
+    0 & 0 & 0 & 1
+\end{bmatrix}
+\]
+
+Skaliranje
+\[
+S_{k}=
+\begin{bmatrix}
+    k & 0 & 0 & 0 \\
+    0 & k & 0 & 0 \\
+    0 & 0 & k & 0 \\
+    0 & 0 & 0 & 1
+\end{bmatrix}
+\]
+
+Rotacija oko x osi
+
+\[
+R_{x,\theta}=
+\begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & \cos{\theta} & -\sin{\theta} & 0 \\
+    0 & \sin{\theta} & \cos{\theta} & 0 \\
+    0 & 0 & 0 & 1
+\end{bmatrix}
+\]
+
+Rotacija oko y osi
+\[
+R_{y,\theta}=
+\begin{bmatrix}
+    \cos{\theta} & 0 & \sin{\theta} & 0 \\
+    0 & 1 & 0 & 0 \\
+    -\sin{\theta} & 0 & \cos{\theta} & 0 \\
+    0 & 0 & 0 & 1
+\end{bmatrix}
+\]
+
+Rotacija oko z osi
+\[
+R_{z,\theta}=
+\begin{bmatrix}
+    \cos{\theta} & -\sin{\theta} & 0 & 0 \\
+    \sin{\theta} & \cos{\theta} & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1
+\end{bmatrix}
+\]
 
 \pagebreak
 
-\section{Zadatak 4}
+Da se neka transformacija $T$ može primijeniti na određene koordinate $(x, y, z)$, koordinate je
+potrebno zapisati u matričnom zapisu $M_{x,y,z}$. Zatim se primjenjuje matrično množenje
+matrica $M_T$ i $M_{x,y,z}$, gdje je $M_T$ matrica transformacije $T$.
 
-\pagebreak
-\section{Zadatak 5}
+\[
+M_{x,y,z}=
+\begin{bmatrix}
+    x \\
+    y \\
+    z \\
+    1
+\end{bmatrix}
+\]
 
-\pagebreak
-\section{Zadatak 6}
-
-\pagebreak
-\section{Zadatak 7}
-
-\pagebreak
-\section{Zadatak 8}
 
 \pagebreak
 
