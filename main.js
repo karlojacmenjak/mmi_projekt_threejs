@@ -97,8 +97,26 @@ class DisplayMode {
 class Cylinder {
 
     constructor() {
-        this.texture = new THREE.TextureLoader().load(
-            'assets/cube3.png'
+        let name = 'Fabric056';
+
+        this.textureMap = new THREE.TextureLoader().load(
+            'assets/' + name + '_1K-JPG/' + name + '_1K_Color.jpg'
+        );
+
+        this.normalMap = new THREE.TextureLoader().load(
+            'assets/' + name + '_1K-JPG/' + name + '_1K_NormalGL.jpg'
+        );
+
+        this.displacementMap = new THREE.TextureLoader().load(
+            'assets/' + name + '_1K-JPG/' + name + '_1K_Displacement.jpg'
+        );
+
+        this.roughnessMap = new THREE.TextureLoader().load(
+            'assets/' + name + '_1K-JPG/' + name + '_1K_Roughness.jpg'
+        );
+
+        this.aoMap = new THREE.TextureLoader().load(
+            'assets/' + name + '_1K-JPG/' + name + '_1K_AmbientOcclusion.jpg'
         );
         
     }
@@ -109,11 +127,30 @@ class Cylinder {
 
         this.geometry = new THREE.CylinderGeometry(1, 1, 1);
 
-        this.material = new THREE.MeshLambertMaterial({
-            color: 0xff00ff,
-            wireframe: displayMode == DisplayMode.wireframe,
-            map: displayMode == DisplayMode.texture ? this.texture : null,
-        });
+        switch(displayMode) {
+            case DisplayMode.wireframe:
+                this.material = new THREE.MeshLambertMaterial({
+                    color: 0xff00ff,
+                    wireframe: true,
+                });
+                break;
+            case DisplayMode.surface:
+                this.material = new THREE.MeshLambertMaterial({
+                    color: 0xff00ff,
+                });
+                break;
+            case DisplayMode.texture:
+                this.material = new THREE.MeshStandardMaterial({
+                    color: 0xffffff,
+                    map: this.textureMap,
+                    normalMap: this.normalMap,
+                    displacementMap: this.displacementMap,
+                    displacementScale: 0.02,
+                    roughnessMap: this.roughnessMap,
+                    aoMap: this.aoMap,
+                });
+                break;  
+    }
     
 
         this.object = new THREE.Mesh(this.geometry, this.material);
@@ -150,22 +187,6 @@ class Cylinder {
         }
     }
 
-    onShowWireframe() {
-        this.material.wireframe = true;
-        this.ambientLight.intensity = 1;
-    }
-
-    onShowNormal() {
-        this.material.wireframe = false;
-        this.ambientLight.intensity = 0.08;
-    }
-
-    onShowTexture() {
-        this.material.wireframe = false;
-        this.ambientLight.intensity = 0.08;
-       
-    }
-
     cleanUp() {
         scene.remove(this.group);
         for(let i = 0; i < this.guiElements.length; i++) this.guiElements[i].destroy();
@@ -182,26 +203,62 @@ class Cone {
 
     constructor() {
 
-        this.texture = new THREE.TextureLoader().load(
-            'assets/cube3.png'
+        let name = 'Fabric056';
+
+        this.textureMap = new THREE.TextureLoader().load(
+            'assets/' + name + '_1K-JPG/' + name + '_1K_Color.jpg'
+        );
+
+        this.normalMap = new THREE.TextureLoader().load(
+            'assets/' + name + '_1K-JPG/' + name + '_1K_NormalGL.jpg'
+        );
+
+        this.displacementMap = new THREE.TextureLoader().load(
+            'assets/' + name + '_1K-JPG/' + name + '_1K_Displacement.jpg'
+        );
+
+        this.roughnessMap = new THREE.TextureLoader().load(
+            'assets/' + name + '_1K-JPG/' + name + '_1K_Roughness.jpg'
+        );
+
+        this.aoMap = new THREE.TextureLoader().load(
+            'assets/' + name + '_1K-JPG/' + name + '_1K_AmbientOcclusion.jpg'
         );
 
     }
 
     build(displayMode) {
 
-        console.log(displayMode);
-
         this.group = new THREE.Group();
 
-        this.geometry = new THREE.ConeGeometry(1,1);
+        this.geometry = new THREE.ConeGeometry(1, 5, 5);
 
-        this.material = new THREE.MeshLambertMaterial({
-            color: 0xFF00FF,
-            wireframe: displayMode == DisplayMode.wireframe,
-            map: displayMode == DisplayMode.texture ? this.texture : null,
-        });
+        switch(displayMode) {
+            case DisplayMode.wireframe:
+                this.material = new THREE.MeshLambertMaterial({
+                    color: 0xff00ff,
+                    wireframe: true,
+                });
+                break;
+            case DisplayMode.surface:
+                this.material = new THREE.MeshLambertMaterial({
+                    color: 0xff00ff,
+                });
+                break;
+            case DisplayMode.texture:
+                this.material = new THREE.MeshStandardMaterial({
+                    color: 0xffffff,
+                    map: this.textureMap,
+                    normalMap: this.normalMap,
+                    displacementMap: this.displacementMap,
+                    displacementScale: 0.02,
+                    roughnessMap: this.roughnessMap,
+                    aoMap: this.aoMap,
+                });
+                break;  
+    }
 
+        
     
         this.object = new THREE.Mesh(this.geometry, this.material);
 
@@ -236,21 +293,6 @@ class Cone {
             this.object.rotation.x += this.args.rotationSpeed * dt;
             this.object.rotation.y += this.args.rotationSpeed * dt;
         }
-    }
-
-    onShowWireframe() {
-        this.material.wireframe = true;
-        this.ambientLight.intensity = 1;
-    }
-
-    onShowNormal() {
-        this.material.wireframe = false;
-        this.ambientLight.intensity = 0.08;
-    }
-
-    onShowTexture() {
-        this.material.wireframe = false;
-        this.ambientLight.intensity = 0.08;
     }
 
     cleanUp() {
