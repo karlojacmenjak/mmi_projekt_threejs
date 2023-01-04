@@ -62,7 +62,7 @@ class Cylinder {
 
         this.group = new THREE.Group();
 
-        this.geometry = new THREE.CylinderGeometry(1, 1, 8);
+        this.geometry = new THREE.CylinderGeometry(1, 1, 1);
 
         this.material = new THREE.MeshLambertMaterial({
             color: 0xff00ff,
@@ -149,7 +149,7 @@ class Cone {
 
         this.group = new THREE.Group();
 
-        this.geometry = new THREE.ConeGeometry(1,5,5);
+        this.geometry = new THREE.ConeGeometry(1,1);
 
         this.material = new THREE.MeshLambertMaterial({
             color: 0xFF00FF,
@@ -235,7 +235,7 @@ class Sphere {
 
         this.group = new THREE.Group();
 
-        this.geometry = new THREE.SphereGeometry(1, 20, 20);
+        this.geometry = new THREE.SphereGeometry(1);
 
         this.material = new THREE.MeshLambertMaterial({
             color: 0xff00ff,
