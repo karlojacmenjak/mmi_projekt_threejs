@@ -36,6 +36,53 @@ const controls = new OrbitControls(camera, labelRenderer.domElement);
 const gui = new GUI({title: 'Postavke'});
 const clock = new THREE.Clock();
 
+let input = {
+
+    left: false,
+    right: false,
+    space: false,
+
+    spacePressed: false,
+
+    isSpacePressed: () => {
+        if(input.space && !input.spacePressed) {
+            input.spacePressed = true;
+            return true;
+        }
+        return false;
+    }
+
+};
+
+window.addEventListener('keydown', (e) => {
+    switch(e.code) {
+        case 'KeyA':
+            input.left = true;
+            break;
+        case 'KeyD':
+            input.right = true;
+            break;
+        case 'Space':
+            input.space = true;
+            break;
+    }
+});
+
+window.addEventListener('keyup', (e) => {
+    switch(e.code) {
+        case 'KeyA':
+            input.left = false;
+            break;
+        case 'KeyD':
+            input.right = false;
+            break;
+        case 'Space':
+            input.space = false;
+            input.spacePressed = false;
+            break;
+    }
+});
+
 // #endregion
 
 class DisplayMode {
@@ -52,8 +99,6 @@ class Cylinder {
         
     }
     build(displayMode) {
-
-        console.log(displayMode);
 
         this.group = new THREE.Group();
 
@@ -204,30 +249,65 @@ class Cone {
 class Sphere {
 
     constructor() {
-        
-        this.texture = new THREE.TextureLoader().load(
-            'assets/cube3.png'
+
+        let name = 'Fabric056';
+
+        this.textureMap = new THREE.TextureLoader().load(
+            'assets/' + name + '_1K-JPG/' + name + '_1K_Color.jpg'
+        );
+
+        this.normalMap = new THREE.TextureLoader().load(
+            'assets/' + name + '_1K-JPG/' + name + '_1K_NormalGL.jpg'
+        );
+
+        this.displacementMap = new THREE.TextureLoader().load(
+            'assets/' + name + '_1K-JPG/' + name + '_1K_Displacement.jpg'
+        );
+
+        this.roughnessMap = new THREE.TextureLoader().load(
+            'assets/' + name + '_1K-JPG/' + name + '_1K_Roughness.jpg'
+        );
+
+        this.aoMap = new THREE.TextureLoader().load(
+            'assets/' + name + '_1K-JPG/' + name + '_1K_AmbientOcclusion.jpg'
         );
 
     }
 
     build(displayMode) {
 
-        console.log(displayMode);
-
         this.group = new THREE.Group();
 
-        this.geometry = new THREE.SphereGeometry(1, 20, 20);
+        this.geometry = new THREE.SphereGeometry(1, 50, 50);
 
-        this.material = new THREE.MeshLambertMaterial({
-            color: 0xff00ff,
-            wireframe: displayMode == DisplayMode.wireframe,
-            map: displayMode == DisplayMode.texture ? this.texture : null,
-        });
+        switch(displayMode) {
+            case DisplayMode.wireframe:
+                this.material = new THREE.MeshLambertMaterial({
+                    color: 0xff00ff,
+                    wireframe: true,
+                });
+                break;
+            case DisplayMode.surface:
+                this.material = new THREE.MeshLambertMaterial({
+                    color: 0xff00ff,
+                });
+                break;
+            case DisplayMode.texture:
+                this.material = new THREE.MeshStandardMaterial({
+                    color: 0xffffff,
+                    map: this.textureMap,
+                    normalMap: this.normalMap,
+                    displacementMap: this.displacementMap,
+                    displacementScale: 0.02,
+                    roughnessMap: this.roughnessMap,
+                    aoMap: this.aoMap,
+                });
+                break;  
+        }
 
         this.object = new THREE.Mesh(this.geometry, this.material);
 
-        this.light = new THREE.DirectionalLight(0xffffff, 1.2);
+        this.light = new THREE.DirectionalLight(0xffffff, 2);
         this.light.position.set(5, 0, 5);
 
         this.ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.02);
@@ -257,6 +337,252 @@ class Sphere {
             this.object.rotation.y += this.args.rotationSpeed * dt;
             this.object.rotation.z += this.args.rotationSpeed * dt;
         }
+    }
+
+    cleanUp() {
+        scene.remove(this.group);
+        for(let i = 0; i < this.guiElements.length; i++) this.guiElements[i].destroy();
+    }
+
+}
+
+// #endregion
+
+// #region Earth
+
+function rad(deg) {
+    return (deg / 180) * Math.PI;
+}
+
+class Earth {
+
+    constructor() {
+
+        this.textureMap = new THREE.TextureLoader().load(
+            'assets/Earth/2k_earth_daymap.jpg'
+        );
+
+        this.normalMap = new THREE.TextureLoader().load(
+            'assets/Earth/2k_earth_normal_map.png'
+        );
+
+        this.specularMap = new THREE.TextureLoader().load(
+            'assets/Earth/2k_earth_specular_map.png'
+        );
+
+        this.mountHeight = 1.4;
+        this.earthRadius = 2;
+        this.carrierOffset = 0.4;
+        this.carrierWidth = 0.2;
+
+        this.carrierRadius1 = this.earthRadius + this.carrierOffset;
+        this.carrierRadius2 = this.carrierRadius1 + this.carrierWidth;
+        this.carrierRadius3 = 0.03;
+        
+
+        this.earthTilt = rad(-23.5);
+
+        this.autoRotating = false;
+        this.rotation = 3;
+        
+
+    }
+
+    build(displayMode) {
+
+        this.group = new THREE.Group();
+
+        camera.position.set(7, 7, 7);
+        controls.target = new THREE.Vector3(0, 3, 0);
+
+        this.earth = new THREE.Mesh(
+            new THREE.SphereGeometry(this.earthRadius, 50, 50),
+            new THREE.MeshPhongMaterial({
+                color: 0xffffff,
+                map: this.textureMap,
+                normalMap: this.normalMap,
+                specularMap: this.specularMap,
+            })
+        );
+        this.earth.position.set(0, 0, 0);
+
+        let mount = new THREE.Mesh(
+            new THREE.CylinderGeometry(
+                1, 2,
+                this.mountHeight,
+                24, 1,
+            ),
+            new THREE.MeshPhongMaterial({
+                color: 0x1565C0,
+            }),
+        );
+        mount.position.set(0, this.mountHeight / 2, 0);
+
+
+        let fullGlobe = new THREE.Group();
+        let globe = new THREE.Group();
+
+        this.buildGlobeCarrier(globe);
+
+        globe.add(this.earth);
+        globe.position.set(0, this.mountHeight + this.carrierRadius2 - 0.08, 0);
+        globe.rotation.set(this.earthTilt, 0, 0);
+        
+        fullGlobe.add(mount);
+        fullGlobe.add(globe);
+        fullGlobe.rotation.set(0, rad(-45), 0);
+
+        this.light = new THREE.DirectionalLight(0xffffff, 1);
+        this.light.position.set(1, 0, 1);
+
+        this.ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.04);
+
+        this.group.add(this.light);
+        this.group.add(fullGlobe);
+        this.group.add(this.ambientLight);
+        scene.add(this.group);
+        
+        this.guiElements = [];
+        
+    }
+
+    buildGlobeCarrier(group) {
+
+        let thetaStart = rad(-94);
+        let thetaLength = rad(188);
+
+        let material = new THREE.MeshPhongMaterial({
+            color: 0x1500C0,
+            side: THREE.DoubleSide,
+        });
+
+        let segments = 60;
+
+        let c1 = new THREE.Mesh(
+            new THREE.CylinderGeometry(
+                this.carrierRadius1, this.carrierRadius1,
+                this.carrierWidth,
+                segments, 1, true,
+                thetaStart, thetaLength
+            ),
+            material
+        );
+
+        let c2 = new THREE.Mesh(
+            new THREE.CylinderGeometry(
+                this.carrierRadius2, this.carrierRadius2,
+                this.carrierWidth,
+                segments, 1, true,
+                thetaStart, thetaLength
+            ),
+            material,
+        );
+
+        let r1 = new THREE.Mesh(
+            new THREE.RingGeometry(
+                this.carrierRadius1,
+                this.carrierRadius2,
+                segments, 1,
+                thetaStart, thetaLength
+            ),
+            material
+        );
+
+        let r2 = new THREE.Mesh(
+            new THREE.RingGeometry(
+                this.carrierRadius1,
+                this.carrierRadius2,
+                segments, 1,
+                thetaStart, thetaLength
+            ),
+            material
+        );
+
+        let p1 = new THREE.Mesh(
+            new THREE.PlaneGeometry(
+                this.carrierWidth,
+                this.carrierWidth,
+            ),
+            material,
+        );
+
+        let p2 = new THREE.Mesh(
+            new THREE.PlaneGeometry(
+                this.carrierWidth,
+                this.carrierWidth,
+            ),
+            material,
+        );
+
+        let c3 = new THREE.Mesh(
+            new THREE.CylinderGeometry(
+                this.carrierRadius3, this.carrierRadius3,
+                this.carrierOffset,
+                segments, 1,
+            ),
+            material,
+        );
+
+        let c4 = new THREE.Mesh(
+            new THREE.CylinderGeometry(
+                this.carrierRadius3, this.carrierRadius3,
+                this.carrierOffset,
+                segments, 1,
+            ),
+            material,
+        );
+
+        
+
+        c1.position.set(0, 0, 0);
+        c1.rotation.set(0, rad(180), rad(90));
+        
+        c2.position.set(0, 0, 0);
+        c2.rotation.set(0, rad(180), rad(90));
+
+        r1.position.set(this.carrierWidth / 2, 0)
+        r1.rotation.set(0, rad(90), 0);
+
+        r2.position.set(-this.carrierWidth / 2, 0)
+        r2.rotation.set(0, rad(90), 0);
+
+        let cr = (this.carrierRadius2 + this.carrierRadius1) / 2;
+
+        p1.position.set(0, 0 + cr * Math.sin(thetaStart), cr * -Math.cos(thetaStart));
+        p1.rotation.set(Math.PI / 2 + thetaStart, 0, 0);
+
+        p2.position.set(0, 0 + cr * Math.sin(thetaStart + thetaLength), cr * -Math.cos(thetaStart + thetaLength));
+        p2.rotation.set(Math.PI / 2 + thetaStart + thetaLength, 0, 0);
+
+        c3.position.set(0, 0 - this.carrierRadius1 + this.carrierOffset / 2, 0);
+        c4.position.set(0, 0 + this.carrierRadius1 - this.carrierOffset / 2, 0);
+
+
+        group.add(c1);
+        group.add(c2);
+        group.add(r1);
+        group.add(r2);
+        group.add(p1);
+        group.add(p2);
+        group.add(c3);
+        group.add(c4);
+
+    }
+
+    update(dt) {
+
+        if(input.isSpacePressed()) {
+            this.autoRotating = !this.autoRotating;
+        }
+
+        if(this.autoRotating) {
+            this.earth.rotation.y += this.rotation * dt;
+        }else{
+            if(input.left) this.earth.rotation.y -= this.rotation * dt;
+            else if(input.right) this.earth.rotation.y += this.rotation * dt;
+        }
+
+        
     }
 
     cleanUp() {
@@ -425,7 +751,7 @@ function init() {
     scenes.push(new Cylinder());
     scenes.push(new Sphere());
     scenes.push(new Sphere());
-    scenes.push(new Sphere());
+    scenes.push(new Earth());
 
     camera.position.set(5, 5, 5);
     camera.lookAt(0, 0, 0);
