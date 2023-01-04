@@ -54,6 +54,7 @@ U Varaždinu, 2.1.2023.
 %%%%%%%%%%%%%%%%%%%%%% KRAJ NASLOVNICE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Uvod}
+
 \textbf{THREE.js} je JavaScript cross platform biblioteka i sučelje za programiranje aplikacija (API) koje se koristi za stvaranje i prikaz animirane 3D računalne grafike u web pregledniku pomoću WebGL-a. Izvorni kod THREE.js-a je otvorenog tipa.
 
 \section{Zadatak 1.}
@@ -171,6 +172,16 @@ Difuzna refleksija je svjetlost koja se odbija od površine objekta u svim smjer
 
 Spekularna refleksija je svjetlost koja se odbija od površine objekta u jednom specifičnom smjeru. Ova komponenta se koristi za simuliranje bljeska i odsjaja na površini objekta.
 
+\subsection{Gouraud i Phong sjenčanje}
+
+Gouraud sjenčanje (ili glatko sjenčanje) je izračunavanje boja po vrhovima. 
+To znači da sjenčilo vrhova mora odrediti boju za svaki vrh i proslijediti boju kao izlaznu varijablu sjenčilu fragmenta. 
+Budući da se ova boja prosljeđuje sjenčilu fragmenata kao promjenjiva varijabla, interpolira se preko fragmenata dajući glatko sjenčanje.
+
+Nasuprot tome, Phong sjenčanje je izračunavanje boje po fragmentu. 
+Osjenčivač vrhova daje podatke o normalama i podatke o položaju kao izlazne varijable za sjenčilo fragmenta. 
+Sjenčalo fragmenta zatim interpolira te varijable i izračunava boju.
+
 Phongov model osvjetljenja se često koristi u računalnoj grafici jer je jednostavan za implementiranje i daje realistične rezultate u većini slučajeva. Međutim, postoje i druge metode za simuliranje osvjetljenja u računalnoj grafici, kao što su radiosity i ray tracing, koje su možda preciznije ali i skuplje za implementiranje.
 \pagebreak
 \section{Aplet}
@@ -192,8 +203,9 @@ direktoriju \verb|tex| datoteke. Nadalje, \LaTeX{} ima dosta svojih fantastični
 \bibitem{Youtube} Jeff Anderson \emph{Applied Linear Algebra, Lesson 7, Video 5: Wireframe Model in 3D} \texttt{https://www.youtube.com/watch?v=FDDl5PQBAkM} (3.1.2023.)
 \bibitem{Youtube} Jeff Anderson \emph{Applied Linear Algebra, Lesson 7, Video 6: Wireframe Model in 3D} \texttt{https://www.youtube.com/watch?v=6KJH1dG8qLY} (3.1.2023.)
 \bibitem{Youtube} Jeff Anderson \emph{Applied Linear Algebra, Lesson 7, Video 7: Wireframe Model in 3D} \texttt{https://www.youtube.com/watch?v=YaxuxZiXnKI} (3.1.2023.)
-\bibitem{geo} Three.js, \texttt{https://threejs.org/}, (28.12.2022.)
+\bibitem{three} Three.js, \texttt{https://threejs.org/}, (28.12.2022.)
 \bibitem{geo} GeoGebra, \texttt{http://www.geogebra.org/cms/}, (4.1.2023.)
+\bibitem{haroldserrano}  13.5.2016. Harold Serrano \emph{What is the difference between Gouraud and Phong shading?} https://www.haroldserrano.com/blog/what-is-the-difference-between-gouraud-and-phong-shading (4.1.2023.)
 \end{thebibliography}
 
 \end{document}
