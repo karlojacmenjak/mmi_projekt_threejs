@@ -10,6 +10,9 @@
 \usepackage{amsmath} 
 \usepackage{amssymb}
 
+\usepackage{blindtext}
+\usepackage{hyperref}
+
 \usepackage{setspace}
 \onehalfspacing
 
@@ -59,8 +62,12 @@ U Varaždinu, 2.1.2023.
 
 \textbf{THREE.js} je JavaScript cross platform biblioteka i sučelje za programiranje aplikacija (API) koje se koristi za stvaranje i prikaz animirane 3D računalne grafike u web pregledniku pomoću WebGL-a. Izvorni kod THREE.js-a je otvorenog tipa.
 
+
+\noindent Rješenje naših zadataka je dostupno na sljedećoj poveznici:
+\\\url{https://karlojacmenjak.github.io/mmi_projekt_threejs/}
+
 \section*{Zadatak 1.}
-\subsection{Postavljanje kamere}
+\subsection*{Postavljanje kamere}
 \begin{flushleft}
     Za početak rada u THREE.js prvo moramo dobiti WebGL kontekst i stvoriti novu scenu 
 \end{flushleft}
@@ -78,7 +85,7 @@ varijabla \textit{fov} koja se koristi za širinu kuta gledanja, \textit{aspect}
 varijabla koja se koristi za predstavljanje najmanje udaljenosti gdje se objekt ne prikazuje na kameri te varijabla \textit{far} koja je predstavljanje najveću 
 udaljenost gdje se objekt ne prikazuje na kameri.
 varijabla \textit{camera} služi tome da se prije navedene četiri varijable stave kao parametri u funkciju \texttt{PerspectiveCamera}.
-\subsection{Kreiranje scene i objekta}
+\subsection*{Kreiranje scene i objekta}
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.5]{image/zadatak1_objekti.png}
@@ -92,7 +99,7 @@ Drugi parametar funkcije \texttt{Mesh} je material. \textit{Material} je takođe
 prikazu i teksturi. Kada smo to sve napravili tada možemo pozvati \texttt{add} funkciju da stvorimo objekt. Svijetlo  se također postavlja sa \texttt{add}.
 Varijabla \textit{light} predstavlja funkciju \texttt{DirectionalLight} koja stvara svijetlost te tu svijetlost postavljamo na neku poziciju. 
 \pagebreak
-\subsection{Interakcija miša i tastature s scenom.}
+\subsection*{Interakcija miša i tastature s scenom.}
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.5]{image/zadatak1_kontrole.png}
