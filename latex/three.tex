@@ -388,7 +388,12 @@ Kada to napravimo dobivamo sljedeći grafički prikaz:
 \subsection{Površinski prikazi sa podacima spremljenim u bufferima}
 Površinski prikazi objekta u WebGL-u se dobivaju tako što se svaka površina dijeli na najmanju moguću površinu, odnosno trokut. Da bi se odredio smjer u kojem se prikazuje površina trebamo izračunati
 normalu trokuta iz točki tog trokuta. To se izračunava tako što se napravi vektorski produkt od dvaju nekomplanarnih vektora koje možemo dobiti iz točki tog trokuta.
-Da bismo došli do tih podataka trebamo pristupati \textit{WEBGL rendering contest} 
+
+Postoji više vrsta buffera koji se koriste u WebGL-u, kao što su vertex buffer, index buffer, normal buffer i teksture buffer.
+
+Vertex buffer sprema podatke o koordinatama svakog vrha površine. Index buffer sprema redoslijed vrhova koji se koriste za crtanje površine. Normal buffer sprema podatke o normali svakog vrha površine. Teksture buffer sprema podatke o teksturama koje se koriste na površini.
+
+Da bi se napravio površinski prikaz stošca, valjka ili sfere, potrebno je prvo kreirati buffer s podacima o koordinatama vrhova, normalama vrhova i teksturama. Zatim se koristi index buffer da se definira redoslijed vrhova koji se koriste za crtanje površine. Nakon toga, podaci iz buffera se koriste za crtanje površine koristeći WebGL funkcije za renderering.
 
 \clearpage
 \subsection{Phongov model osvjetljenja}
