@@ -97,26 +97,43 @@ class DisplayMode {
 class Cylinder {
 
     constructor() {
-        let name = 'Fabric056';
 
-        this.textureMap = new THREE.TextureLoader().load(
+        let name = 'Wood052';
+
+        this.textureMap1 = new THREE.TextureLoader().load(
+            'assets/' + name + '_1K-JPG/' + name + '_1K_Color.jpg',
+            (texture) => {
+                texture.wrapS = THREE.RepeatWrapping;
+                texture.repeat.set(4, 1);
+            }
+        );
+
+        this.normalMap1 = new THREE.TextureLoader().load(
+            'assets/' + name + '_1K-JPG/' + name + '_1K_NormalGL.jpg',
+            (texture) => {
+                texture.wrapS = THREE.RepeatWrapping;
+                texture.repeat.set(4, 1);
+            }
+        );
+
+        this.roughnessMap1 = new THREE.TextureLoader().load(
+            'assets/' + name + '_1K-JPG/' + name + '_1K_Roughness.jpg',
+            (texture) => {
+                texture.wrapS = THREE.RepeatWrapping;
+                texture.repeat.set(4, 1);
+            }
+        );
+
+        this.textureMap2 = new THREE.TextureLoader().load(
             'assets/' + name + '_1K-JPG/' + name + '_1K_Color.jpg'
         );
 
-        this.normalMap = new THREE.TextureLoader().load(
+        this.normalMap2 = new THREE.TextureLoader().load(
             'assets/' + name + '_1K-JPG/' + name + '_1K_NormalGL.jpg'
         );
 
-        this.displacementMap = new THREE.TextureLoader().load(
-            'assets/' + name + '_1K-JPG/' + name + '_1K_Displacement.jpg'
-        );
-
-        this.roughnessMap = new THREE.TextureLoader().load(
+        this.roughnessMap2 = new THREE.TextureLoader().load(
             'assets/' + name + '_1K-JPG/' + name + '_1K_Roughness.jpg'
-        );
-
-        this.aoMap = new THREE.TextureLoader().load(
-            'assets/' + name + '_1K-JPG/' + name + '_1K_AmbientOcclusion.jpg'
         );
         
     }
@@ -125,44 +142,72 @@ class Cylinder {
 
         this.group = new THREE.Group();
 
-        this.geometry = new THREE.CylinderGeometry(1, 1, 1);
+        let radialSegments;
+        let heightSegments;
+
+        switch(displayMode) {
+            case DisplayMode.texture:
+                radialSegments = 64;
+                heightSegments = 64;
+                break;
+            default:
+                radialSegments = 32;
+                heightSegments = 1;
+                break;
+        }
+
+        this.geometry = new THREE.CylinderGeometry(0.8, 0.8, 2, radialSegments, heightSegments);
+
+        const color = 0xff00ff;
 
         switch(displayMode) {
             case DisplayMode.wireframe:
-                this.material = new THREE.MeshLambertMaterial({
-                    color: 0xff00ff,
+                this.material = new THREE.MeshBasicMaterial({
+                    color: color,
                     wireframe: true,
                 });
                 break;
             case DisplayMode.surface:
                 this.material = new THREE.MeshLambertMaterial({
-                    color: 0xff00ff,
+                    color: color,
                 });
                 break;
             case DisplayMode.texture:
-                this.material = new THREE.MeshStandardMaterial({
-                    color: 0xffffff,
-                    map: this.textureMap,
-                    normalMap: this.normalMap,
-                    displacementMap: this.displacementMap,
-                    displacementScale: 0.02,
-                    roughnessMap: this.roughnessMap,
-                    aoMap: this.aoMap,
-                });
-                break;  
-    }
+                this.material = [
+                    new THREE.MeshStandardMaterial({
+                        map: this.textureMap1,
+                        normalMap: this.normalMap1,
+                        roughnessMap: this.roughnessMap1,
+                        roughness: 0.5,
+                    }),
+                    new THREE.MeshStandardMaterial({
+                        map: this.textureMap2,
+                        normalMap: this.normalMap2,
+                        roughnessMap: this.roughnessMap2,
+                        roughness: 0.5,
+                    }),
+                    new THREE.MeshStandardMaterial({
+                        map: this.textureMap2,
+                        normalMap: this.normalMap2,
+                        roughnessMap: this.roughnessMap2,
+                        roughness: 0.5,
+                    }),
+                ];
+                break;
+        }
     
-
         this.object = new THREE.Mesh(this.geometry, this.material);
+        this.object.position.set(0, 1, 0);
 
-        this.light = new THREE.DirectionalLight(0xffffff, 1.2);
-        this.light.position.set(5, 5, 5);
+        this.light = new THREE.DirectionalLight(0xffffff, 1);
+        this.light.position.set(1, 1, 1);
 
-        this.ambientLight = new THREE.AmbientLight(0xFFFFFF);
+        this.ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.2);
 
         this.group.add(this.light);
         this.group.add(this.object);
         this.group.add(this.ambientLight);
+
         scene.add(this.group);
         
         this.args = {
@@ -174,8 +219,8 @@ class Cylinder {
         this.guiElements.push(gui.add(this.object.position, 'x', -5, 5, 0.1));
         this.guiElements.push(gui.add(this.object.position, 'y', -5, 5, 0.1));
         this.guiElements.push(gui.add(this.object.position, 'z', -5, 5, 0.1));
-        this.guiElements.push(gui.add(this.args, 'rotate').name('rotiraj'));
-        this.guiElements.push(gui.add(this.args, 'rotationSpeed').name('brzina'));
+        this.guiElements.push(gui.add(this.args, 'rotate').name('Rotiraj'));
+        this.guiElements.push(gui.add(this.args, 'rotationSpeed', -5, 5, 0.1).name('Brzina'));
         
     }
 
@@ -183,7 +228,7 @@ class Cylinder {
         controls.target.set(this.object.position.x, this.object.position.y, this.object.position.z);
         if(this.args.rotate) {
             this.object.rotation.y += this.args.rotationSpeed * dt;
-            this.object.rotation.z += this.args.rotationSpeed * dt;
+            this.object.rotation.x += this.args.rotationSpeed * dt;
         }
     }
 
@@ -213,16 +258,8 @@ class Cone {
             'assets/' + name + '_1K-JPG/' + name + '_1K_NormalGL.jpg'
         );
 
-        this.displacementMap = new THREE.TextureLoader().load(
-            'assets/' + name + '_1K-JPG/' + name + '_1K_Displacement.jpg'
-        );
-
         this.roughnessMap = new THREE.TextureLoader().load(
             'assets/' + name + '_1K-JPG/' + name + '_1K_Roughness.jpg'
-        );
-
-        this.aoMap = new THREE.TextureLoader().load(
-            'assets/' + name + '_1K-JPG/' + name + '_1K_AmbientOcclusion.jpg'
         );
 
     }
@@ -231,45 +268,58 @@ class Cone {
 
         this.group = new THREE.Group();
 
-        this.geometry = new THREE.ConeGeometry(1, 5, 5);
+        let radialSegments;
+        let heightSegments;
+ 
+        switch(displayMode) {
+            case DisplayMode.texture:
+                radialSegments = 32;
+                heightSegments = 32;
+                break;
+            default:
+                radialSegments = 32;
+                heightSegments = 1;
+                break;
+        }
+
+        this.geometry = new THREE.ConeGeometry(1, 2, radialSegments, heightSegments);
+
+        const color = 0xff00ff;
 
         switch(displayMode) {
             case DisplayMode.wireframe:
-                this.material = new THREE.MeshLambertMaterial({
-                    color: 0xff00ff,
+                this.material = new THREE.MeshBasicMaterial({
+                    color: color,
                     wireframe: true,
                 });
                 break;
             case DisplayMode.surface:
                 this.material = new THREE.MeshLambertMaterial({
-                    color: 0xff00ff,
+                    color: color,
                 });
                 break;
             case DisplayMode.texture:
                 this.material = new THREE.MeshStandardMaterial({
-                    color: 0xffffff,
                     map: this.textureMap,
                     normalMap: this.normalMap,
-                    displacementMap: this.displacementMap,
-                    displacementScale: 0.02,
                     roughnessMap: this.roughnessMap,
-                    aoMap: this.aoMap,
+                    roughness: 0.5,
                 });
                 break;  
-    }
-
-        
+        }
     
         this.object = new THREE.Mesh(this.geometry, this.material);
+        this.object.position.set(0, 1, 0);
 
-        this.light = new THREE.DirectionalLight(0xffffff, 3);
-        this.light.position.set(0, 4, 0);
+        this.light = new THREE.DirectionalLight(0xffffff, 1);
+        this.light.position.set(1, 1, 1);
 
-        this.ambientLight = new THREE.AmbientLight(0xFFFFFF);
+        this.ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.02);
 
         this.group.add(this.light);
         this.group.add(this.object);
         this.group.add(this.ambientLight);
+
         scene.add(this.group);
         
         this.args = {
@@ -281,8 +331,8 @@ class Cone {
         this.guiElements.push(gui.add(this.object.position, 'x', -5, 5, 0.1));
         this.guiElements.push(gui.add(this.object.position, 'y', -5, 5, 0.1));
         this.guiElements.push(gui.add(this.object.position, 'z', -5, 5, 0.1));
-        this.guiElements.push(gui.add(this.args, 'rotate').name('rotiraj'));
-        this.guiElements.push(gui.add(this.args, 'rotationSpeed').name('brzina'));
+        this.guiElements.push(gui.add(this.args, 'rotate').name('Rotiraj'));
+        this.guiElements.push(gui.add(this.args, 'rotationSpeed', -5, 5, 0.1).name('Brzina'));
         
         
     }
@@ -291,7 +341,7 @@ class Cone {
         controls.target.set(this.object.position.x, this.object.position.y, this.object.position.z);
         if(this.args.rotate) {
             this.object.rotation.x += this.args.rotationSpeed * dt;
-            this.object.rotation.y += this.args.rotationSpeed * dt;
+            this.object.rotation.z += this.args.rotationSpeed * dt;
         }
     }
 
@@ -310,7 +360,7 @@ class Sphere {
 
     constructor() {
 
-        let name = 'Tiles105';
+        let name = 'Fabric057';
 
         this.textureMap = new THREE.TextureLoader().load(
             'assets/' + name + '_1K-JPG/' + name + '_1K_Color.jpg'
@@ -338,30 +388,38 @@ class Sphere {
 
         this.group = new THREE.Group();
 
-        this.geometry = new THREE.SphereGeometry(1, 50, 50);
+        let segments;
+        switch(displayMode) {
+            case DisplayMode.wireframe:
+                segments = 20; break;
+            default:
+                segments = 50; break;
+        }
 
-        let color = 0x2979FF;
+        this.geometry = new THREE.SphereGeometry(1, segments, segments);
+
+        const color = 0x76ff03;
 
         switch(displayMode) {
             case DisplayMode.wireframe:
-                this.material = new THREE.MeshPhongMaterial({
+                this.material = new THREE.MeshBasicMaterial({
                     color: color,
                     wireframe: true,
                 });
                 break;
             case DisplayMode.surface:
-                this.material = new THREE.MeshPhongMaterial({
+                this.material = new THREE.MeshLambertMaterial({
                     color: color,
                 });
                 break;
             case DisplayMode.texture:
                 this.material = new THREE.MeshStandardMaterial({
-                    color: 0xffffff,
                     map: this.textureMap,
                     normalMap: this.normalMap,
                     displacementMap: this.displacementMap,
                     displacementScale: 0.02,
                     roughnessMap: this.roughnessMap,
+                    roughness: 0.5,
                     aoMap: this.aoMap,
                 });
                 break;  
@@ -369,16 +427,17 @@ class Sphere {
 
         this.object = new THREE.Mesh(this.geometry, this.material);
         this.object.position.set(0, 1, 0);
+        controls.target.set(0, 1, 0);
 
-        this.light = new THREE.DirectionalLight(0xffffff, 2);
-        this.light.position.set(1, 0, 1);
+        this.light = new THREE.DirectionalLight(0xFFFFFF, 1);
+        this.light.position.set(1, 1, 1);
 
         this.ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.02);
 
-        console.log(this.geometry.getAttribute("position"))
-        this.group.add(this.light);
         this.group.add(this.object);
+        this.group.add(this.light);
         this.group.add(this.ambientLight);
+
         scene.add(this.group);
         
         this.args = {
@@ -390,8 +449,8 @@ class Sphere {
         this.guiElements.push(gui.add(this.object.position, 'x', -5, 5, 0.1));
         this.guiElements.push(gui.add(this.object.position, 'y', -5, 5, 0.1));
         this.guiElements.push(gui.add(this.object.position, 'z', -5, 5, 0.1));
-        this.guiElements.push(gui.add(this.args, 'rotate').name('rotiraj'));
-        this.guiElements.push(gui.add(this.args, 'rotationSpeed').name('brzina'));
+        this.guiElements.push(gui.add(this.args, 'rotate').name('Rotiraj'));
+        this.guiElements.push(gui.add(this.args, 'rotationSpeed', -5, 5, 0.1).name('Brzina'));
         
     }
 
@@ -460,8 +519,7 @@ class Earth {
 
         this.earth = new THREE.Mesh(
             new THREE.SphereGeometry(this.earthRadius, 50, 50),
-            new THREE.MeshPhongMaterial({
-                color: 0xffffff,
+            new THREE.MeshLambertMaterial({
                 map: this.textureMap,
                 normalMap: this.normalMap,
                 specularMap: this.specularMap,
@@ -497,16 +555,19 @@ class Earth {
         fullGlobe.rotation.set(0, rad(-45), 0);
 
         this.light = new THREE.DirectionalLight(0xFFFFFF, 1);
-        this.light.position.set(1, 0, 1);
+        this.light.position.set(1, 1, 1);
 
-        this.ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.2);
+        this.ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.04);
 
         this.group.add(this.light);
         this.group.add(fullGlobe);
         this.group.add(this.ambientLight);
         scene.add(this.group);
         
+        
+
         this.guiElements = [];
+        this.guiElements.push(gui.add(this, 'rotation', -8, 8, 0.1).name('Brzina rotacije'));
         
     }
 
@@ -663,7 +724,7 @@ class Earth {
 let scenes = [];
 let currentScene = 0;
 let displayMode = 0;
-let showAxes = true;
+let showAxes = false;
 
 class UiController {
 
@@ -682,7 +743,6 @@ class UiController {
                 if(i == currentScene) return;
                 scenes[currentScene].cleanUp();
                 currentScene = i;
-                displayMode = 0;
                 scenes[currentScene].build(displayMode);
                 this.updateSceneControls();
             });
@@ -817,20 +877,15 @@ function init() {
     scenes.push(new Sphere());
     scenes.push(new Earth());
 
-    camera.position.set(5, 5, 5);
+    camera.position.set(2, 2, 2);
     camera.lookAt(0, 0, 0);
 
     addAxes(axesGroup);
     scene.add(axesGroup);
 
-    const args = {
-        initCamera: () => {
-            camera.position.set(5, 5, 5);
-            camera.lookAt(0, 0, 0);
-        }
-    };
-
-    gui.add(args, 'initCamera').name('Postavi kameru');
+    controls.enablePan = false;
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.1;
 
     scenes[currentScene].build(displayMode);
 
