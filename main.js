@@ -93,7 +93,7 @@ class DisplayMode {
 }
 
 let options = {
-    rotate: false,
+    rotate: true,
     rotationSpeed: 1,
 };
 
@@ -538,7 +538,7 @@ class Earth {
         globe.add(this.earth);
         globe.position.set(0, this.mountHeight + this.carrierRadius2 - 0.08, 0);
         globe.rotation.set(this.earthTilt, 0, 0);
-        
+
         fullGlobe.add(mount);
         fullGlobe.add(globe);
         fullGlobe.rotation.set(0, rad(-45), 0);
