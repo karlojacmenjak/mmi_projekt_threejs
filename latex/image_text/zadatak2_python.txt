@@ -1,0 +1,22 @@
+import math
+
+phi = math.pi/4
+
+omega = math.pi/4
+
+point_list = []
+
+count_1 = 0
+for i in range(0,8):
+	count_1 = count_1 + 1
+	count_2 = 0
+	for j in range(0,8):	
+		radius = math.sqrt(2)
+        #dodajemo 0 da izbjegnemo -0.0
+		x = round(radius*math.cos(phi*i)*math.sin(omega*j),2) + 0
+		y = round(radius*math.sin(phi*i)*math.sin(omega*j),2) + 0
+		z = round(radius*math.cos(omega*j),2) + 0
+		count_2 = count_2 + 1 
+		point_list.append(chr(count_1+64) + str(count_2) + "=("+str(x)+","+str(y)+","+str(z)+")")
+mylist = list(dict.fromkeys(point_list))
+print(*mylist, sep='\n')

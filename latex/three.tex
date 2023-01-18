@@ -108,11 +108,18 @@ a CSS2DRenderer prikazuje sve potrebne elemente modela.
 \subsection{Matematički model mrežastog prikaza za valjak}
 
 Za matematički model valjak potrebno je prvo odrediti koliko pojedine baze valjka će imati točaka, koliki radius će imati pojedine baze te njihovu udaljenost odnosno visinu.
-Također je potrebno odrediti položaj tih kružnica u prostoru. Za naš primjer uzeli smo da donja kružnica ima radius $r = \sqrt2$ i središte joj je u $(0,0,0)$, dok gornja kružnica ima isti radius te središte u $(0,0,2)$.
-Obje kružnice su paralelne s $xy$-ravninom te svaka kružnica će imati 8 točaka na kružnici koje su raspoređene $45$° jedna od druge relativno od središta kružnice počevši od točke $(\sqrt2, 0, S_x)$ i jednu točku u središtu $S_x$.
+Također je potrebno odrediti položaj tih kružnica u prostoru.
+Za dobivanje točaka na kružnicama koristimo izraz:
+\begin{center}
+    $(r \times cos \varphi, r \times sin \varphi, h)$ \tab $\varphi \in [0, 2\pi]$
+\end{center}
+Gdje $h$ je udaljenost kružnica
+Za naš primjer uzeli smo da donja kružnica ima radius $r = \sqrt2$ i središte joj je u $(0,0,0)$, dok gornja kružnica ima isti radius te središte u $(0,0,2)$.
+Obje kružnice su paralelne s $xy$-ravninom te svaka kružnica će imati 8 točaka na kružnici koje su raspoređene $45$° odnosno $\pi/4$ jedna od druge relativno od središta kružnice počevši od točke $(\sqrt2, 0, h_x)$.
 \newline Kada izračunamo sve točke dobivamo sljedeću tablicu točaka:
 
 \begin{center}
+    \renewcommand{\arraystretch}{0.7}
     \begin{tabular}{||c | c | c | c ||} 
      \hline
      vrh & x & y & z \\ [0.5ex] 
@@ -270,6 +277,7 @@ Sada kada imamo potrebne podatke možemo nacrtati sljedeći mrežasti prikaz:
 \subsection{Matematički model mrežastog prikaza za stošca}
 
 Matematički model mrežastog prikaza stošca se radi slično kao i valjak,ali umjesto dvije kružnice i dvije točke imamo jednu kružnicu i dvije točke
+\newline
 Uzimamo bazu kružnice radiusa $r = \sqrt2$ i središte joj je u $(0,0,0)$  paralelna s $xy$-ravninom 
 te će imati 8 točaka na kružnici koje su raspoređene $45$° jedna od druge relativno od središta kružnice počevši od točke $(\sqrt2, 0, 0)$ i jednu točku u središtu $(0,0,0)$.
 Druga točka će biti točka vrha u točki $(0,0,3)$.
@@ -329,27 +337,57 @@ te svaka točka kružnice se treba spojiti s točkom vrha $(0,0,3)$. To možemo 
     
 \clearpage
 \subsection{Matematički model mrežastog prikaza za sfere}
+
 \iffalse
-begin{flushleft}
-    \begin{tabular}{||c | c | c ||} 
-     \hline
-     edge & start & end \\ [0.5ex] 
-     \hline\hline
-     1 & 6 & 87837  \\ 
-     \hline
-     2 & 7 & 78  \\
-     \hline
-     3 & 545 & 778  \\
-     \hline
-     4 & 545 & 18744 \\
-     \hline
-     5 & 88 & 788  \\ [1ex] 
-     \hline
-    \end{tabular}
+\begin{flushleft}
+    $A_1 = (\sqrt{2},0,0)$, 
+    $A_2 = (1,1,0)$,
+    $A_3 = (0,\sqrt{2},0)$,
+    $A_4 = (-1,1,0)$,
+    $A_5 = (-\sqrt{2},0,0)$,\\
+    $A_6 = (-1,1,0)$
+    $A_7 = (0,-\sqrt{2},0)$,
+    $A_8 = (1,-1,0)$,
+    $A_9 = (0,0,0)$,
+    $A_{10} = (0,0,3)$
+    \newline
 \end{flushleft}
 \fi
+Točke sfere se dobivaju pomoću izraza 
+\begin{center}
+$(r \times cos \varphi \times sin \theta, r \times sin\varphi \times sin\theta, r \theta cos \theta)$ \tab $\varphi \in [0, 2\pi],\theta \in [0, \pi]$
+\end{center}
+Točke sfere se mogu brzo izračunali pomoću python programa kao što je sljedeći:
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.65]{image/python.png}
+    \caption{Python kod za izračun svih točaka sfere i uklanja dvosturke vrijednosti}
+    
+\end{figure}
 
-\newpage
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.5]{image/točke.png}
+    \caption{Točke sfere kao rezultat Python programa}
+    
+\end{figure}
+\clearpage
+
+Sada kada imamo točke kao u slici 9. trebamo spojiti susjedne točke koje se nalaze u kružnicama koja je paralelna s $xy$ ravnini.
+Te spojiti točke koje se nalaze između susjednih kružnica koje se nalaze na istoj ravnini koja je okomita na obje kružnice u $xy$ ravnini.
+Kada to napravimo dobivamo sljedeći grafički prikaz:
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=1]{image/zadatak2_sfera_geo.png}
+    \caption{Točke sfere}
+    
+\end{figure}
+\pagebreak
+
+\subsection{Površinski prikazi sa podacima spremljenim u buferima}
+
+\clearpage
 \subsection{Phongov model osvjetljenja}
 Phongov model osvjetljenja je računalni model koji se koristi u računalnoj grafici za simuliranje osvjetljenja na površinama objekata u 3D prostoru. Model se zasniva na matematičkom modelu osvjetljenja koji je razvio Bui Tuong Phong, a koji se temelji na fizičkim zakonima o refleksiji svjetlosti.
 
@@ -386,18 +424,6 @@ Sjenčalo fragmenta zatim interpolira te varijable i izračunava boju.
 \subsubsection{MeshLambertMaterial}
 Materijal za nesjajne površine, bez odsjaja.
 Materijal koristi nefizički zasnovan Lambertov model za izračun refleksije. Ovo može dobro simulirati neke površine (kao što je neobrađeno drvo ili kamen), ali ne može simulirati sjajne površine sa reflektirajućim odsjajima (kao što je lakirano drvo). MeshLambertMaterial koristi sjenčanje po fragmentu.
-
-\pagebreak
-\subsection{Neka svojstva svjetlosti}
-\subsubsection{AmbientLight}
-\hspace{10mm} Ovo svjetlo globalno jednako osvjetljava sve objekte u sceni.
-Ovo se svjetlo ne može koristiti za bacanje sjena jer nema smjer.
-
-\subsubsection{DirectionalLight}
-\hspace{10mm} Svjetlost koja se emitira u određenom smjeru. Ovo svjetlo će se ponašati kao da je beskrajno daleko i da su zrake koje iz njega proizlaze sve paralelne. Uobičajen slučaj za ovo je simulacija dnevnog svjetla; sunce je dovoljno daleko da se njegov položaj može smatrati beskonačnim, a sve svjetlosne zrake koje dolaze s njega su paralelne.
-
-\subsubsection{SpotLight}
-\hspace{10mm} Ovo svjetlo se emitira iz jedne točke u jednom smjeru, duž stošca koji se povećava što je dalje od svjetla.
 
 \pagebreak
 \subsection{Neka svojstva svjetlosti}
@@ -571,6 +597,7 @@ a ne za kraj tada se tipke A i D ne mogu koristiti do tog trenutka kada se ponov
 \bibitem{geo} GeoGebra, \texttt{http://www.geogebra.org/cms/}, (4.1.2023.)
 \bibitem{haroldserrano}  13.5.2016. Harold Serrano \emph{What is the difference between Gouraud and Phong shading?} https://www.haroldserrano.com/blog/what-is-the-difference-between-gouraud-and-phong-shading (4.1.2023.)
 \bibitem{wiki} \emph{Normal mapping} \texttt{https://en.wikipedia.org/wiki/Normal\_mapping} (5.1.2023.)
+\bibitem{horvat} Damir Horvat \emph{Računalna grafika – laboratorijske vježbe 5, Fakultet organizacije i informatike, Varaždin} (17.1.2023.)
 \end{thebibliography}
 
 \end{document}
