@@ -348,17 +348,22 @@ te svaka točka kružnice se treba spojiti s točkom vrha $(0,0,3)$. To možemo 
 Točke sfere se dobivaju pomoću formule $(r \times cos \varphi \times sin \theta, r \times sin\varphi \times sin\theta, r \theta cos \theta)$. Točke sfere smo brzo izračunali pomoću python programa što smo napisali.
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.2]{image/python.png}
+    \includegraphics[scale=0.5]{image/python.png}
     \caption{Python kod za izračun svih točaka sfere}
     
 \end{figure}
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.25]{image/točke.png}
+    \includegraphics[scale=0.5]{image/točke.png}
     \caption{Točke sfere}
     
 \end{figure}
+\clearpage
+
+Sada kada imamo točke kao u slici 9. trebamo spojiti susjedne točke koje se nalaze u kružnicama koja je paralelna s $xy$ ravnini.
+Te spojiti točke koje se nalaze između susjednih kružnica koje se nalaze na istoj ravnini koja je okomita na obje kružnice u $xy$ ravnini.
+Kada to napravimo dobivamo sljedeći grafički prikaz:
 
 \begin{figure}[ht]
     \centering
