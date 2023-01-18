@@ -109,7 +109,7 @@ a CSS2DRenderer prikazuje sve potrebne elemente modela.
 
 Za matematički model valjak potrebno je prvo odrediti koliko pojedine baze valjka će imati točaka, koliki radius će imati pojedine baze te njihovu udaljenost odnosno visinu.
 Također je potrebno odrediti položaj tih kružnica u prostoru. Za naš primjer uzeli smo da donja kružnica ima radius $r = \sqrt2$ i središte joj je u $(0,0,0)$, dok gornja kružnica ima isti radius te središte u $(0,0,2)$.
-Obje kružnice su paralelne s $xy$-ravninom te svaka kružnica će imati 8 točaka na kružnici koje su raspoređene $45°$ jedna od druge relativno od središta kružnice počevši od točke $(\sqrt2, 0, S_x)$ i jednu točku u središtu $S_x$.
+Obje kružnice su paralelne s $xy$-ravninom te svaka kružnica će imati 8 točaka na kružnici koje su raspoređene $45$° jedna od druge relativno od središta kružnice počevši od točke $(\sqrt2, 0, S_x)$ i jednu točku u središtu $S_x$.
 \newline Kada izračunamo sve točke dobivamo sljedeću tablicu točaka:
 
 \begin{center}
@@ -163,7 +163,7 @@ Obje kružnice su paralelne s $xy$-ravninom te svaka kružnica će imati 8 toča
 
 \newpage
 Sada je još potrebno spojiti odgovarajuće točke da dobijemo mrežasti prikaz. 
-Za to je potrebno povući liniju od početne do završne gdje susjedne točke kružnice se povezuju međusobno i s središtem te kružnice,
+Za to je potrebno povući liniju od početne do završne točke gdje susjedne točke kružnice se povezuju međusobno i s središtem te kružnice,
 i svaka točka kružnice spaja se s svakom točkom druge kružnice tako da je dužina koja nastaje je okomita na obje kružnice.
 Takve veze nazivamo rubovima (eng. edge) koje možemo zapisati u sljedećem tabličnom obliku:
     \begin{center}
@@ -270,19 +270,28 @@ Sada kada imamo potrebne podatke možemo nacrtati sljedeći mrežasti prikaz:
 \subsection{Matematički model mrežastog prikaza za stošca}
 
 Matematički model mrežastog prikaza stošca se radi slično kao i valjak,ali umjesto dvije kružnice i dvije točke imamo jednu kružnicu i dvije točke
+Uzimamo bazu kružnice radiusa $r = \sqrt2$ i središte joj je u $(0,0,0)$  paralelna s $xy$-ravninom 
+te će imati 8 točaka na kružnici koje su raspoređene $45$° jedna od druge relativno od središta kružnice počevši od točke $(\sqrt2, 0, 0)$ i jednu točku u središtu $(0,0,0)$.
+Druga točka će biti točka vrha u točki $(0,0,3)$.
+Kada izračunamo točke dobivamo sljedeći niz točaka: 
 \begin{flushleft}
-    $A_1 = \{\sqrt{2},0,0\}$, 
-    $A_2 = \{1,1,0\}$,
-    $A_3 = \{0,\sqrt{2},0\}$,\\
-    $A_4 = \{-1,1,0\}$,
-    $A_5 = \{-\sqrt{2},0,0\},$
-    $A_6 = \{-1,1,0\}$\\
-    $A_7 = \{0,-\sqrt{2},0\}$
-    $A_8 = \{1,-1,0\},$
-    $A_9 = \{0,0,0\},$\\
-    $A_{10} = \{0,0,3\}$
+    $A_1 = (\sqrt{2},0,0)$, 
+    $A_2 = (1,1,0)$,
+    $A_3 = (0,\sqrt{2},0)$,
+    $A_4 = (-1,1,0)$,
+    $A_5 = (-\sqrt{2},0,0)$,\\
+    $A_6 = (-1,1,0)$
+    $A_7 = (0,-\sqrt{2},0)$,
+    $A_8 = (1,-1,0)$,
+    $A_9 = (0,0,0)$,
+    $A_{10} = (0,0,3)$
     \newline
-    \newline
+\end{flushleft}
+    
+Sada je potrebno povući liniju od početne do završne točke gdje susjedne točke kružnice se povezuju međusobno i s središtem te kružnice,
+te svaka točka kružnice se treba spojiti s točkom vrha $(0,0,3)$. To možemo umjesto tabličnog prikaza još prikazati kao skupove:
+    
+\begin{flushleft}
     $e_1 = \{A_{1},A_{2} \}$, 
     $e_2 = \{A_{2},A_{3} \}$, 
     $e_3 = \{A_{3},A_{4} \}$, 
@@ -307,14 +316,21 @@ Matematički model mrežastog prikaza stošca se radi slično kao i valjak,ali u
     $e_{22} = \{A_{10},A_{3} \}$, 
     $e_{23} = \{A_{10},A_{2} \}$, 
     $e_{24} = \{A_{10},A_{1} \}$
-
-
-  
-
     \end{flushleft}
-
-    \subsection{Matematički model mrežastog prikaza za sfere}
-\begin{flushleft}
+    \clearpage
+    Kada povežemo sve točke po pravilu navedemom gore, dobivamo sljedeći prikaz:
+    
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[scale=1]{image/zadatak2_stozac_geo.png}
+        \caption{Mrežasti prikaz stožca u alatu GeoGebra}
+        
+    \end{figure}
+    
+\clearpage
+\subsection{Matematički model mrežastog prikaza za sfere}
+\iffalse
+begin{flushleft}
     \begin{tabular}{||c | c | c ||} 
      \hline
      edge & start & end \\ [0.5ex] 
@@ -330,7 +346,8 @@ Matematički model mrežastog prikaza stošca se radi slično kao i valjak,ali u
      5 & 88 & 788  \\ [1ex] 
      \hline
     \end{tabular}
-    \end{flushleft}
+\end{flushleft}
+\fi
 
 \newpage
 \subsection{Phongov model osvjetljenja}
