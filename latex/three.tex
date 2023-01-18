@@ -460,7 +460,7 @@ Najučinkovitiji način za transformiranje koordinata u trodimenzionalnom prosto
 linearnog operatora, odnosno matrica transformacija. U nastavku su prikazane matrice transformacija
 za translacija, skaliranje te rotaciju oko x, y i z osi koje Three.js koristi.
 
-Translacija
+Translacija (za vektor $(tx, ty, tz)$)
 \[
 T_{tx,ty,tz}=
 \begin{bmatrix}
@@ -471,7 +471,7 @@ T_{tx,ty,tz}=
 \end{bmatrix}
 \]
 
-Skaliranje
+Skaliranje (za skalar $k$)
 \[
 S_{k}=
 \begin{bmatrix}
@@ -482,7 +482,7 @@ S_{k}=
 \end{bmatrix}
 \]
 
-Rotacija oko x osi
+Rotacija oko x osi (za kut $\theta$)
 
 \[
 R_{x,\theta}=
@@ -494,7 +494,7 @@ R_{x,\theta}=
 \end{bmatrix}
 \]
 
-Rotacija oko y osi
+Rotacija oko y osi (za kut $\theta$)
 \[
 R_{y,\theta}=
 \begin{bmatrix}
@@ -505,7 +505,7 @@ R_{y,\theta}=
 \end{bmatrix}
 \]
 
-Rotacija oko z osi
+Rotacija oko z osi (za kut $\theta$)
 \[
 R_{z,\theta}=
 \begin{bmatrix}
@@ -535,6 +535,11 @@ M_{x,y,z}=
 U Three.js-u, spomenute transformacije možemo primijeniti na neki objekt koristeći
 funkciju $applyMatrix4$ s kojom možemo mijenjati poziciju objekta (translacija),
 veličinu objekta (skaliranje) te rotaciju oko x, y i z osi.
+
+Svaki objekt u Three.js-u ima svoje matrice transformacije koje se koriste za izračun
+položaja u svijetu i na ekranu: 
+transformaciju objekta u odnosu na objekt roditelj, globalnu transformaciju objekta te 
+transformaciju objekta relativno koordinatnom sustavu kamere.
 
 \pagebreak
 
