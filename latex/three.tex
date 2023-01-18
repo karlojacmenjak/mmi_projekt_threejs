@@ -106,6 +106,12 @@ a CSS2DRenderer prikazuje sve potrebne elemente modela.
 \section{Zadatak 2.}
 
 \subsection{Matematički model mrežastog prikaza za valjak}
+
+Za matematički model valjak potrebno je prvo odrediti koliko pojedine baze valjka će imati točaka, koliki radius će imati pojedine baze te njihovu udaljenost odnosno visinu.
+Također je potrebno odrediti položaj tih kružnica u prostoru. Za naš primjer uzeli smo da donja kružnica ima radius $r = \sqrt2$ i središte joj je u $(0,0,0)$, dok gornja kružnica ima isti radius te središte u $(0,0,2)$.
+Obje kružnice su paralelne s $xy$-ravninom te svaka kružnica će imati 8 točaka na kružnici koje su raspoređene $45°$ jedna od druge relativno od središta kružnice počevši od točke $(\sqrt2, 0, S_x)$ i jednu točku u središtu $S_x$.
+\newline Kada izračunamo sve točke dobivamo sljedeću tablicu točaka:
+
 \begin{center}
     \begin{tabular}{||c | c | c | c ||} 
      \hline
@@ -155,7 +161,13 @@ a CSS2DRenderer prikazuje sve potrebne elemente modela.
         \caption{Tablica točaka.}
     \end{figure}
 
+\newpage
+Sada je još potrebno spojiti odgovarajuće točke da dobijemo mrežasti prikaz. 
+Za to je potrebno povući liniju od početne do završne gdje susjedne točke kružnice se povezuju međusobno i s središtem te kružnice,
+i svaka točka kružnice spaja se s svakom točkom druge kružnice tako da je dužina koja nastaje je okomita na obje kružnice.
+Takve veze nazivamo rubovima (eng. edge) koje možemo zapisati u sljedećem tabličnom obliku:
     \begin{center}
+        \renewcommand{\arraystretch}{0.75}
         \begin{tabular}{||c | c | c ||} 
          \hline
          edge & početak & kraj  \\ [0.5ex] 
@@ -218,7 +230,7 @@ a CSS2DRenderer prikazuje sve potrebne elemente modela.
          \hline
          $e_{29}$ & $A_{6}$ & $A_{17}$  \\
          \hline
-         $e_{30}$ & $A_{7}$0 & $A_{17}$  \\
+         $e_{30}$ & $A_{7}$ & $A_{17}$  \\
          \hline
          $e_{31}$ & $A_{8}$ & $A_{17}$  \\ 
          \hline
@@ -237,7 +249,7 @@ a CSS2DRenderer prikazuje sve potrebne elemente modela.
          $e_{38}$ & $A_{15}$ & $A_{18}$   \\
          \hline
          $e_{39}$ & $A_{16}$ &$A_{18}$ \\[1ex] 
-         
+         \hline
         \end{tabular}
         \end{center}
         \begin{figure}[ht]
@@ -245,7 +257,9 @@ a CSS2DRenderer prikazuje sve potrebne elemente modela.
             \caption{Tablica rubova.}
         \end{figure}
 
-    \subsection{Matematički model mrežastog prikaza za stošca}
+Sada kada imamo potrebne 
+
+\subsection{Matematički model mrežastog prikaza za stošca}
 \begin{flushleft}
     $A_1 = \{\sqrt{2},0,0\}$, 
     $A_2 = \{1,1,0\}$,
@@ -504,7 +518,7 @@ Ambient occlusion mapa se koristi zajedno s drugim tehnikama, poput tehnike mapi
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.35]{image/zadatak7_teksture.png}
+    \includegraphics[scale=0.45]{image/zadatak7_teksture.png}
     \caption{Izgledi tekstura.}
 \end{figure}
 
@@ -516,12 +530,10 @@ Ambient occlusion mapa se koristi zajedno s drugim tehnikama, poput tehnike mapi
     \includegraphics[scale=0.5]{image/zadatak8.png}
     \caption{Model globusa.}
 \end{figure}
-Model globusa se pritiskom tipke space na tipkovnici vrti oko polova. Pritiskom tipka a i d globus se može okretati u lijevo ili desno. Ukolko se pritisne space za početak rotacije, 
-a ne za kraj tada se tipke a i d ne mogu koristiti do tog trenutka kada se ponovo pritisne space.
+Model globusa se pritiskom tipke Space na tipkovnici vrti oko polova. Pritiskom tipka A i D globus se može okretati u lijevo ili desno. Ukolko se pritisne Space za početak rotacije, 
+a ne za kraj tada se tipke A i D ne mogu koristiti do tog trenutka kada se ponovo pritisne space.
 
 \pagebreak
-
-\paragraph{Referenciranje na literaturu.} Prema literaturi \cite{Maric} vrijedi\,\ldots \ Prema literaturi \cite{geo} mora biti\,\ldots
 
 \begin{thebibliography}{9}
 
