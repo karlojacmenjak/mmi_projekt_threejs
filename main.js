@@ -92,6 +92,11 @@ class DisplayMode {
     static texture = 2;
 }
 
+let options = {
+    rotate: false,
+    rotationSpeed: 1,
+};
+
 // #region Cylinder
 
 class Cylinder {
@@ -210,25 +215,20 @@ class Cylinder {
 
         scene.add(this.group);
         
-        this.args = {
-            rotate: false,
-            rotationSpeed: 1,
-        };
-
         this.guiElements = [];
         this.guiElements.push(gui.add(this.object.position, 'x', -5, 5, 0.1));
         this.guiElements.push(gui.add(this.object.position, 'y', -5, 5, 0.1));
         this.guiElements.push(gui.add(this.object.position, 'z', -5, 5, 0.1));
-        this.guiElements.push(gui.add(this.args, 'rotate').name('Rotiraj'));
-        this.guiElements.push(gui.add(this.args, 'rotationSpeed', -5, 5, 0.1).name('Brzina'));
+        this.guiElements.push(gui.add(options, 'rotate').name('Rotiraj'));
+        this.guiElements.push(gui.add(options, 'rotationSpeed', -5, 5, 0.1).name('Brzina'));
         
     }
 
     update(dt) {
         controls.target.set(this.object.position.x, this.object.position.y, this.object.position.z);
-        if(this.args.rotate) {
-            this.object.rotation.y += this.args.rotationSpeed * dt;
-            this.object.rotation.x += this.args.rotationSpeed * dt;
+        if(options.rotate) {
+            this.object.rotation.y += options.rotationSpeed * dt;
+            this.object.rotation.x += options.rotationSpeed * dt;
         }
     }
 
@@ -305,7 +305,7 @@ class Cone {
                     roughnessMap: this.roughnessMap,
                     roughness: 0.5,
                 });
-                break;  
+                break;
         }
     
         this.object = new THREE.Mesh(this.geometry, this.material);
@@ -322,26 +322,21 @@ class Cone {
 
         scene.add(this.group);
         
-        this.args = {
-            rotate: false,
-            rotationSpeed: 1,
-        };
-
         this.guiElements = [];
         this.guiElements.push(gui.add(this.object.position, 'x', -5, 5, 0.1));
         this.guiElements.push(gui.add(this.object.position, 'y', -5, 5, 0.1));
         this.guiElements.push(gui.add(this.object.position, 'z', -5, 5, 0.1));
-        this.guiElements.push(gui.add(this.args, 'rotate').name('Rotiraj'));
-        this.guiElements.push(gui.add(this.args, 'rotationSpeed', -5, 5, 0.1).name('Brzina'));
+        this.guiElements.push(gui.add(options, 'rotate').name('Rotiraj'));
+        this.guiElements.push(gui.add(options, 'rotationSpeed', -5, 5, 0.1).name('Brzina'));
         
         
     }
 
     update(dt) {
         controls.target.set(this.object.position.x, this.object.position.y, this.object.position.z);
-        if(this.args.rotate) {
-            this.object.rotation.x += this.args.rotationSpeed * dt;
-            this.object.rotation.z += this.args.rotationSpeed * dt;
+        if(options.rotate) {
+            this.object.rotation.x += options.rotationSpeed * dt;
+            this.object.rotation.z += options.rotationSpeed * dt;
         }
     }
 
@@ -427,7 +422,6 @@ class Sphere {
 
         this.object = new THREE.Mesh(this.geometry, this.material);
         this.object.position.set(0, 1, 0);
-        controls.target.set(0, 1, 0);
 
         this.light = new THREE.DirectionalLight(0xFFFFFF, 1);
         this.light.position.set(1, 1, 1);
@@ -440,24 +434,20 @@ class Sphere {
 
         scene.add(this.group);
         
-        this.args = {
-            rotate: false,
-            rotationSpeed: 1,
-        };
-
         this.guiElements = [];
         this.guiElements.push(gui.add(this.object.position, 'x', -5, 5, 0.1));
         this.guiElements.push(gui.add(this.object.position, 'y', -5, 5, 0.1));
         this.guiElements.push(gui.add(this.object.position, 'z', -5, 5, 0.1));
-        this.guiElements.push(gui.add(this.args, 'rotate').name('Rotiraj'));
-        this.guiElements.push(gui.add(this.args, 'rotationSpeed', -5, 5, 0.1).name('Brzina'));
+        this.guiElements.push(gui.add(options, 'rotate').name('Rotiraj'));
+        this.guiElements.push(gui.add(options, 'rotationSpeed', -5, 5, 0.1).name('Brzina'));
         
     }
 
     update(dt) {
-        if(this.args.rotate) {
-            this.object.rotation.y += this.args.rotationSpeed * dt;
-            this.object.rotation.z += this.args.rotationSpeed * dt;
+        controls.target.set(this.object.position.x, this.object.position.y, this.object.position.z);
+        if(options.rotate) {
+            this.object.rotation.y += options.rotationSpeed * dt;
+            this.object.rotation.z += options.rotationSpeed * dt;
         }
     }
 
@@ -505,9 +495,8 @@ class Earth {
         this.earthTilt = rad(-23.5);
 
         this.autoRotating = false;
-        this.rotation = 3;
+        this.rotation = 2;
         
-
     }
 
     build(displayMode) {
@@ -515,7 +504,7 @@ class Earth {
         this.group = new THREE.Group();
 
         camera.position.set(7, 7, 7);
-        controls.target = new THREE.Vector3(0, 3, 0);
+        controls.target.set(0, 3, 0);
 
         this.earth = new THREE.Mesh(
             new THREE.SphereGeometry(this.earthRadius, 50, 50),
@@ -562,12 +551,10 @@ class Earth {
         this.group.add(this.light);
         this.group.add(fullGlobe);
         this.group.add(this.ambientLight);
+
         scene.add(this.group);
-        
-        
 
         this.guiElements = [];
-        this.guiElements.push(gui.add(this, 'rotation', -8, 8, 0.1).name('Brzina rotacije'));
         
     }
 
